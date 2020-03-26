@@ -1,0 +1,33 @@
+{
+  "name": "@silvermine/standardization",
+  "version": "3.0.0-rc.0",
+  "description": "Standardization utilities for Silvermine projects",
+  "scripts": {
+    "test": "check-node-version --npm 6.13.4",
+    "release": "standard-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/silvermine/standardization.git"
+  },
+  "keywords": [
+    "markdownlint",
+    "linting",
+    "markdown lint",
+    "editor config",
+    "sass lint",
+    "release process"
+  ],
+  "author": "Jeremy Thomerson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/silvermine/standardization/issues"
+  },
+  "homepage": "https://github.com/silvermine/standardization#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@commitlint/cli": "8.3.5",
+    "@commitlint/travis-cli": "8.3.5",
+    "check-node-version": "4.0.2"
+  }
+}
