@@ -25,11 +25,10 @@
   },
   "homepage": "https://github.com/silvermine/standardization#readme",
   "dependencies": {
-    "grunt-sass-lint": "0.2.2"
-  },
-  "devDependencies": {
+    "grunt-sass-lint": "0.2.2",
     "@commitlint/cli": "8.3.5",
     "@commitlint/travis-cli": "8.3.5",
     "check-node-version": "4.0.2"
-  }
+  },
+  "devDependencies": {}
 }
