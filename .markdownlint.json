@@ -1,0 +1,18 @@
+{
+   "default": true,
+   "no-trailing-punctuation": false,
+   "line-length": {
+      "line_length": 90,
+      "code_block_line_length": 130
+   },
+   "no-multiple-blanks": { "maximum": 2 },
+   "hr-style": { "style": "---" },
+   "code-block-style": { "style": "fenced" },
+   "code-fence-style": { "style": "backtick" },
+   "ul-start-left": false,
+   "ul-indent": {
+      "indent": 3,
+      "start_indented": true
+   },
+   "no-alt-text": false
+}
