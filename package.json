@@ -33,6 +33,8 @@
   "devDependencies": {
     "@commitlint/cli": "8.3.5",
     "@commitlint/travis-cli": "8.3.5",
-    "check-node-version": "4.0.2"
+    "check-node-version": "4.0.2",
+    "grunt": "1.1.0",
+    "grunt-cli": "1.3.2"
   }
 }
