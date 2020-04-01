@@ -4,10 +4,9 @@
   "description": "Standardization utilities for Silvermine projects",
   "types": "./dist/types/index.d.ts",
   "bin": {
-      "silvermine-release": "./dist/release-it-config/cli/cli.js"
-   },
+    "silvermine-release": "./dist/release-it-config/cli/index.js"
+  },
   "scripts": {
-    "prepare": "grunt build",
     "test": "check-node-version --npm 6.13.4",
     "release": "standard-version",
     "commitlint": "commitlint --from f59a7f4498aa76e29c33888d01aec18a3d81b343"

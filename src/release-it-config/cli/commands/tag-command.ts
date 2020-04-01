@@ -1,4 +1,4 @@
-import { IReleaseItOptions } from '../..';
+import { IReleaseItOptions } from '../../interfaces';
 
 export default (config: IReleaseItOptions): boolean => {
    Object.assign(

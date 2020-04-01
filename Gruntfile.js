@@ -31,9 +31,7 @@ module.exports = (grunt) => {
          configs: {
             standards: 'tsconfig.json',
             types: 'src/tsconfig.types.json',
-            releaseIt: {
-               commonjs: `src/${appConfigs.releaseIt.dirName}/tsconfig.commonjs.json`,
-            },
+            releaseIt: `src/${appConfigs.releaseIt.dirName}/tsconfig.json`,
          },
       },
       commands: {
@@ -89,7 +87,7 @@ module.exports = (grunt) => {
             cmd: `${config.commands.tsc} -p ${config.ts.configs.types} --pretty`,
          },
          silvermineRelease: {
-            cmd: `${config.commands.tsc} -p ${config.ts.configs.releaseIt.commonjs} --pretty`,
+            cmd: `${config.commands.tsc} -p ${config.ts.configs.releaseIt} --pretty`,
          },
       },
 

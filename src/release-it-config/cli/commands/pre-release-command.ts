@@ -1,4 +1,4 @@
-import { IReleaseItOptions } from '../..';
+import { IReleaseItOptions } from '../../interfaces';
 
 export default (options: string[], config: IReleaseItOptions): boolean => {
    const option = options[0];
