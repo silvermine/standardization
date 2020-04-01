@@ -70,8 +70,26 @@ for your editor:
 `ln -s ./node_modules/@silvermine/standardization/.editorconfig`
 
 
-TODO: fill in details and examples here.
+### Commitlint
 
+   * Add a file called commitlint.config.js to your project root with the following content:
+
+   ```javascript
+   'use strict';
+
+   module.exports = {
+      extends: [ '@silvermine/standardization/commitlint.js' ],
+   };
+   ```
+
+   * Use git log --oneline to find the short hash of the previous commit and take note of it
+   * Add the following NPM script to `package.json`:
+
+   `"commitlint": "commitlint --from deadbeef"` (where deadbeef is the short hash from the previous step)
+
+   * Configure `.gitlab-ci.yml` or `.travis.yml` to run `npm run commitlint` before running `npm test`
+
+TODO: fill in more details and examples here
 
 ## License
 
