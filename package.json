@@ -24,7 +24,9 @@
     "url": "https://github.com/silvermine/standardization/issues"
   },
   "homepage": "https://github.com/silvermine/standardization#readme",
-  "dependencies": {},
+  "dependencies": {
+    "grunt-sass-lint": "0.2.2"
+  },
   "devDependencies": {
     "@commitlint/cli": "8.3.5",
     "@commitlint/travis-cli": "8.3.5",
