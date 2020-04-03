@@ -22,7 +22,7 @@ This repo aggregates many of the standards we use when developing our software, 
 Notably, we have extensive JavaScript and TypeScript linting that is _not_ included in
 this repo. See [@silvermine/eslint-config][eslintconfig] and
 [@silvermine/eslint-plugin][eslintplugin] for those standards. They are not part of this
-repo because of specific naming requirements for providing ESLint config and plugins.
+repo because of specific naming requirements for providing Eslint config and plugins.
 
 
 ## Why?

@@ -1,18 +1,47 @@
 {
    "default": true,
-   "no-trailing-punctuation": false,
-   "line-length": {
-      "line_length": 90,
-      "code_block_line_length": 130
+   "header-increment": true,
+   "heading-style": {
+      "style": "atx"
    },
-   "no-multiple-blanks": { "maximum": 2 },
-   "hr-style": { "style": "---" },
-   "code-block-style": { "style": "fenced" },
-   "code-fence-style": { "style": "backtick" },
+   "ul-style": {
+      "style": "asterisk"
+   },
+   "list-indent": true,
    "ul-start-left": false,
    "ul-indent": {
       "indent": 3,
       "start_indented": true
    },
-   "no-alt-text": false
+   "no-trailing-spaces": true,
+   "no-hard-tabs": true,
+   "no-reversed-links": true,
+   "no-multiple-blanks": { "maximum": 2 },
+   "commands-show-output": true,
+   "line-length": {
+      "line_length": 90,
+      "code_block_line_length": 130
+   },
+   "no-missing-space-atx": true,
+   "no-multiple-space-atx": true,
+   "heading-start-left": true,
+   "no-duplicate-header": {
+      "allow_different_nesting": true
+   },
+   "no-trailing-punctuation":{
+      "punctuation":  ".,;:"
+   },
+   "no-bare-urls": true,
+   "hr-style": { "style": "---" },
+   "no-emphasis-as-heading": false,
+   "no-space-in-emphasis": true,
+   "no-space-in-code": true,
+   "no-space-in-links": true,
+   "fenced-code-language": true,
+   "first-line-heading": true,
+   "no-empty-links": false,
+   "no-alt-text": false,
+   "code-block-style": { "style": "fenced" },
+   "single-trailing-newline": true,
+   "code-fence-style": { "style": "backtick" }
 }
