@@ -7,9 +7,12 @@
     "silvermine-release": "./dist/release-it-config/cli/index.js"
   },
   "scripts": {
-    "test": "check-node-version --npm 6.13.4",
-    "release": "standard-version",
-    "commitlint": "commitlint --from f59a7f4498aa76e29c33888d01aec18a3d81b343"
+      "commitlint": "commitlint --from f59a7f4498aa76e29c33888d01aec18a3d81b343",
+      "test": "check-node-version --npm 6.13.4",
+      "release": "standard-version",
+      "release:local": "node ./dist/release-it-config/cli/index.js --dev",
+      "release:tag": "npm run release:local -- --tag",
+      "release:rc": "npm run release:local -- --pre-release=rc",
   },
   "repository": {
     "type": "git",

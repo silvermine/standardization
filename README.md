@@ -115,7 +115,14 @@ grunt.loadNpmTasks('grunt-markdownlint');
 grunt.registerTask('standards', [ 'markdownlint' ]);
 ```
 
-TODO: fill in details and examples here.
+
+### silvermine-release (release-it!)
+
+This project contains the `silvermine-release` CLI tool, which automates our release
+process. Under the hood the tool uses [Release It!](https://www.npmjs.com/package/release-it).
+
+For usage details see [the silvermin-release docs](src/release-it-config/README.md).
+
 
 ## License
 
