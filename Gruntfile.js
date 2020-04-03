@@ -45,6 +45,8 @@ module.exports = (grunt) => {
       out: {
          dist: './dist/',
          releaseIt: {
+            // Should this path change we should update the resolved path to plugins
+            // in src/release-it-config/config.ts.
             plugins: `./dist/${appConfigs.releaseIt.dirName}/plugins`,
          },
       },

@@ -2,6 +2,7 @@ import {
    IRepositoryReleaseSettings,
    IReleaseItOptions,
 } from './interfaces';
+import path from 'path';
 
 const RELEASE_VERSION_NAME = 'release v${version}',
       CHANGELOG_PATTERN: string | boolean = 'git log --pretty=format:"* %s (%h)" $(git describe --exclude "*rc*" --abbrev=0)...HEAD',
@@ -18,7 +19,9 @@ export default {
          preset: 'conventionalcommits',
          infile: CHANGELOG_INFILE,
       },
-      '@silvermine/standardization/dist/release-it-config/plugins/pause-for-changelog.js': {
+      // If these paths change, we should make sure that the Grunt.js configuration
+      // is also updated. See: `config.out.releaseIt.plugins` in Gruntfile.js
+      [path.resolve(__dirname) + '/plugins/pause-for-changelog.js']: {
          infile: CHANGELOG_INFILE,
       },
    },
