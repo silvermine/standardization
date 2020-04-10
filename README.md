@@ -58,6 +58,18 @@ grunt.loadNpmTasks('grunt-sass-lint');
 grunt.registerTask('standards', [ 'sasslint' ]);
 ```
 
+
+### EditorConfig
+
+[EditorConfig](https://editorconfig.org/) provides a default set of editor configuration values
+to use in Silvermine projects.
+
+Symlink the .editorconfig file to the root of your project and use the appropriate extension
+for your editor:
+
+`ln -s ./node_modules/@silvermine/standardization/.editorconfig`
+
+
 TODO: fill in details and examples here.
 
 
