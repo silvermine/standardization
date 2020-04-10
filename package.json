@@ -4,7 +4,8 @@
   "description": "Standardization utilities for Silvermine projects",
   "scripts": {
     "test": "check-node-version --npm 6.13.4",
-    "release": "standard-version"
+    "release": "standard-version",
+    "commitlint": "commitlint --from 65c4626"
   },
   "repository": {
     "type": "git",
@@ -25,11 +26,10 @@
   },
   "homepage": "https://github.com/silvermine/standardization#readme",
   "dependencies": {
-    "grunt-sass-lint": "0.2.2"
-  },
-  "devDependencies": {
+    "grunt-sass-lint": "0.2.2",
     "@commitlint/cli": "8.3.5",
     "@commitlint/travis-cli": "8.3.5",
     "check-node-version": "4.0.2"
-  }
+  },
+  "devDependencies": {}
 }
