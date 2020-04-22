@@ -116,12 +116,12 @@ grunt.registerTask('standards', [ 'markdownlint' ]);
 ```
 
 
-### silvermine-release (release-it!)
+### silvermine-release (Release It!)
 
 This project contains the `silvermine-release` CLI tool, which automates our release
 process. Under the hood the tool uses [Release It!](https://www.npmjs.com/package/release-it).
 
-For usage details see [the silvermin-release docs](src/release-it-config/README.md).
+For usage details see [the silvermine-release docs](src/release-it-config/README.md).
 
 
 ## License

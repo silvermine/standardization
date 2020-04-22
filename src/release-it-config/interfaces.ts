@@ -25,5 +25,5 @@ export interface IReleaseItOptions {
       publish: boolean;
    };
    gitHub?: IRepositoryReleaseSettings;
-   gitLub?: IRepositoryReleaseSettings;
+   gitLab?: IRepositoryReleaseSettings;
 }

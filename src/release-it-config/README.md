@@ -8,7 +8,7 @@ If you have this project installed globally you can use the following commands:
 `silvermine-release --release`
 
 
-## Run a prerelease
+## Run a Prerelease
 
 `silvermine-release --pre-release=rc`
 
@@ -25,8 +25,8 @@ to your `package.json`'s `scripts: {}` object.
 For example:
 
 ```json
-   "release-it-rc": "silvermine-release --pre-release=rc",
-   "release-it": "silvermine-release"
+   "release-rc": "silvermine-release --pre-release=rc",
+   "release": "silvermine-release"
 ```
 
 
@@ -61,7 +61,7 @@ You can now run `release-it` commands, passing our config:
 ## Release Process
 
 1. With a clean working directory, checkout a branch for your release,
-something like `user/prepare-v.YOUR.VERSION.NUMBER`.
+something like `user/prepare-vYOUR.VERSION.NUMBER`.
 
 2. Run `silvermine-release --release` (or `--pre-release={rc | alpha | beta}`).
    * During this step, silvermine-release will generate a changelog, and pause for editing.
