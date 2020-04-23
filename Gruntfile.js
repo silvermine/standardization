@@ -64,8 +64,8 @@ module.exports = (grunt) => {
             src: [ ...config.docs.src.md ],
             options: {
                config: config.markdownlintConfig,
-            }
-         }
+            },
+         },
       },
 
       eslint: {

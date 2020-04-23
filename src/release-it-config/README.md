@@ -5,10 +5,19 @@ If you have this project installed globally you can use the following commands:
 
 ## Run a Release
 
+With a clean working directory, run:
+
 `silvermine-release --release`
 
+Begins the release process for a full release:
+
+   * Generates a changelog of bugfixes and features.
+   * Calculates the next semver version number and bumps the version in `package.json`.
+   * Commits the changes.
 
 ## Run a Prerelease
+
+With a clean working directory, run:
 
 `silvermine-release --pre-release=rc`
 
@@ -16,6 +25,22 @@ If you have this project installed globally you can use the following commands:
 
 `silvermine-release --pre-release=alpha`
 
+Begins the release process for a pre-release version:
+
+   * Calculates the next semver version number and bumps the version in `package.json`.
+   * Commits the changes.
+
+## Tag the Release
+
+With a clean working directory, run:
+
+`silvermine-release --tag`
+
+Creates git tags for publishing a release:
+
+   * Creates the local tag based on the current version found in
+   package.json.
+   * Pushes the tag to your repository.
 
 ## NPM Scripts
 
@@ -89,12 +114,12 @@ For development in this project, the following npm scripts are available:
 
 ## Fixing Problems
 
-   * **Changelog editing**: If something goes wrong during the changelog step, you'll have to
-  reset your working directory so you can start over: `git reset HEAD --hard`.
+   * **Changelog editing**: If something goes wrong during the changelog step, you'll have
+   to reset your working directory so you can start over: `git reset HEAD --hard`.
    * **Commit/Bump**: If you need to bail out of the process during this step, you can simply
-  issue `CTRL + C` and release-it will gracefully roll back any changes for you.
+   issue `CTRL + C` and release-it will gracefully roll back any changes for you.
    * **Tagging**: If something goes wrong during this step (such as if you had changes locally
-  but not on the remote), you will either have to:
+   but not on the remote), you will either have to:
       * Delete the local/remote tag: `git tag -d TAGNAME`, `git push -d origin TAGNAME`
       * Or, if you have the tag locally, but not remotely, push the tag manually:
         `git push origin TAGNAME`.

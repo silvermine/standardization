@@ -4,10 +4,15 @@ import {
 } from './interfaces';
 import path from 'path';
 
-const RELEASE_VERSION_NAME = 'release v${version}',
-      CHANGELOG_PATTERN: string | boolean = 'git log --pretty=format:"* %s (%h)" $(git describe --exclude "*rc*" --abbrev=0)...HEAD',
-      CHANGELOG_INFILE = 'CHANGELOG.md',
-      REPOSITORY_RELEASE_SETTINGS: IRepositoryReleaseSettings = {};
+const RELEASE_VERSION_NAME = 'release v${version}';
+
+const CHANGELOG_INFILE = 'CHANGELOG.md';
+
+const REPOSITORY_RELEASE_SETTINGS: IRepositoryReleaseSettings = {};
+
+const CHANGELOG_PATTERN: string | boolean = `
+   git log --grep=fix: --grep=feat: --pretty=format:"* %s (%h)" $(git describe --exclude "*rc*" --abbrev=0)...HEAD
+`;
 
 REPOSITORY_RELEASE_SETTINGS.release = true;
 REPOSITORY_RELEASE_SETTINGS.releaseName = 'Release ${tagName}';

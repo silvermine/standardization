@@ -1,6 +1,4 @@
-export default (): false => {
+export default (): void => {
    // eslint-disable-next-line
-   console.log('(silvermine-release) Allowed commands: --release, --pre-release, --release-npm');
-
-   return false;
+   console.log('(silvermine-release) Allowed commands: --release, --pre-release, --tag, --help');
 };

@@ -12,7 +12,8 @@
     "release": "standard-version",
     "release:local": "node ./dist/release-it-config/cli/index.js --dev",
     "release:tag": "npm run release:local -- --tag",
-    "release:rc": "npm run release:local -- --pre-release=rc"
+    "release:rc": "npm run release:local -- --pre-release=rc",
+    "release:help": "npm run release:local -- --help"
   },
   "repository": {
     "type": "git",

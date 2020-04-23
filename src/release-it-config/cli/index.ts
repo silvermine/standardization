@@ -46,12 +46,14 @@ const run = (): void => {
          return preReleaseCommand([ option ], config);
       } else if (argument === 'tag') {
          return tag(config);
-      } else if (argument === 'help') {
-         return helpCommand();
       }
 
       return false;
    });
+
+   if (!isExecutable || findArgument('--help') === 'help') {
+      helpCommand();
+   }
 
    if (!isExecutable) {
       return;
