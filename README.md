@@ -22,7 +22,7 @@ This repo aggregates many of the standards we use when developing our software, 
 Notably, we have extensive JavaScript and TypeScript linting that is _not_ included in
 this repo. See [@silvermine/eslint-config][eslintconfig] and
 [@silvermine/eslint-plugin][eslintplugin] for those standards. They are not part of this
-repo because of specific naming requirements for providing ESLint config and plugins.
+repo because of specific naming requirements for providing Eslint config and plugins.
 
 
 ## Why?
@@ -85,11 +85,37 @@ for your editor:
    * Use git log --oneline to find the short hash of the previous commit and take note of it
    * Add the following NPM script to `package.json`:
 
-   `"commitlint": "commitlint --from deadbeef"` (where deadbeef is the short hash from the previous step)
+   `"commitlint": "commitlint --from deadbeef"` (where deadbeef is the short hash from the
+   previous step)
 
-   * Configure `.gitlab-ci.yml` or `.travis.yml` to run `npm run commitlint` before running `npm test`
+   * Configure `.gitlab-ci.yml` or `.travis.yml` to run `npm run commitlint`
+     before running `npm test`
 
-TODO: fill in more details and examples here
+
+### markdownlint
+
+Add the following configuration to your Gruntfile.js, register the task, and add
+the `markdownlint` task to the `standards` command:
+
+```javascript
+// Inside initConfig...
+markdownlint: {
+   all: {
+      src: [ './path/to/markdown/file.md' ],
+      options: {
+         config: grunt.file.readJSON('.markdownlint.json'),
+      },
+   },
+},
+
+// Register the task:
+grunt.loadNpmTasks('grunt-markdownlint');
+
+// Add the command to `grunt standards`:
+grunt.registerTask('standards', [ 'markdownlint' ]);
+```
+
+TODO: fill in details and examples here.
 
 ## License
 
