@@ -18,7 +18,7 @@ REPOSITORY_RELEASE_SETTINGS.release = true;
 REPOSITORY_RELEASE_SETTINGS.releaseName = 'Release ${tagName}';
 REPOSITORY_RELEASE_SETTINGS.releaseNotes = CHANGELOG_PATTERN;
 
-export default {
+const config: IReleaseItOptions = {
    plugins: {
       '@release-it/conventional-changelog': {
          preset: 'conventionalcommits',
@@ -44,4 +44,6 @@ export default {
    },
    gitHub: REPOSITORY_RELEASE_SETTINGS,
    gitLab: REPOSITORY_RELEASE_SETTINGS,
-} as IReleaseItOptions;
+};
+
+export default config;

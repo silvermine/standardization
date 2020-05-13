@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import releaseIt from 'release-it';
 import _ from 'underscore';
-import releaseItOptions from '../config';
+import releaseItOptions from '../';
 import { IReleaseItOptions } from '../interfaces';
 import {
    preReleaseCommand,

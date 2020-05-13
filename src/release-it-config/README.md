@@ -60,12 +60,12 @@ For example:
 If you want to skip using the tool, and instead use `release-it` as intended,
 you can do that too.
 
-Add a file called `release-it.js` to your project root, with the following contents:
+Add a file called `.release-it.js` to your project root, with the following contents:
 
 ```javascript
 'use strict';
 
-const config = require('@silvermine/release-it-config').default;
+const config = require('@silvermine/standardization/release-it-config');
 
 module.exports = {
    plugins: config.plugins,
@@ -104,13 +104,11 @@ something like `user/prepare-vYOUR.VERSION.NUMBER`.
 
 ## Development
 
-For development in this project, the following npm scripts are available:
+For development in this project, you can install the project globally as follows:
 
-   * `release:rc`: Perform a pre-release.
-   * `release:tag`: Tag the release.
-   * `release`: Perform a full release.
-   * `release:local`: Utility script called by the scripts above passing the `--dev` option.
+Run a build: `grunt build`
 
+Install the project globally: `npm i -g ./` or `npm link`
 
 ## Fixing Problems
 
