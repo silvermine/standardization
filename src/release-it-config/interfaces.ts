@@ -6,10 +6,7 @@ export interface IRepositoryReleaseSettings {
 
 export interface IReleaseItOptions {
    plugins?: {
-      [pluginName: string]: {
-         preset?: string;
-         infile?: string;
-      };
+      [pluginName: string]: Record<string, unknown>;
    };
    preRelease?: string;
    git: {
