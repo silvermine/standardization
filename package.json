@@ -37,11 +37,11 @@
     "@commitlint/cli": "8.3.5",
     "@commitlint/travis-cli": "8.3.5",
     "check-node-version": "4.0.3",
-    "@release-it/conventional-changelog": "1.1.1",
+    "@release-it/conventional-changelog": "1.1.4",
     "grunt-markdownlint": "2.9.0",
     "grunt-sass-lint": "0.2.2",
     "markdownlint": "0.19.0",
-    "release-it": "13.5.2",
+    "release-it": "13.6.0",
     "tslib": "1.9.3",
     "underscore": "1.9.2"
   },
