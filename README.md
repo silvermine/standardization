@@ -94,28 +94,39 @@ for your editor:
 
 ### markdownlint
 
+Add the following contents to a `.markdownlint.json` file to your project's
+root directory:
+
+```json
+{
+   "extends": "./node_modules/@silvermine/standardization/.markdownlint.json"
+}
+```
+
 Add the following configuration to your Gruntfile.js, register the task, and add
 the `markdownlint` task to the `standards` command:
 
 ```javascript
-// Inside initConfig...
+// Top of Gruntfile.js
+var markdownlint = require('markdownlint');
+
+// Inside `grunt.initConfig()`
 markdownlint: {
    all: {
-      src: [ './path/to/markdown/file.md' ],
+      src: [ './path/to/markdown.md' ],
       options: {
-         config: grunt.file.readJSON('.markdownlint.json'),
+         // eslint-disable-next-line no-sync
+         config: markdownlint.readConfigSync('.markdownlint.json'),
       },
    },
 },
 
-// Register the task:
+// Load the task:
 grunt.loadNpmTasks('grunt-markdownlint');
 
-// Add the command to `grunt standards`:
+// Add the command to the `standards` task:
 grunt.registerTask('standards', [ 'markdownlint' ]);
 ```
-
-TODO: fill in details and examples here.
 
 ## License
 
