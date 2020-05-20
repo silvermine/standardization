@@ -11,3 +11,4 @@ before_install: npm i -g npm@6.13.4
 script:
    - commitlint-travis
    - npm run test
+   - grunt standards
