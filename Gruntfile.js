@@ -22,6 +22,9 @@ module.exports = (grunt) => {
             plugins: `./src/${appConfigs.releaseIt.dirName}/plugins/**/*.js`,
          },
       },
+      hbs: {
+         templates: `./src/${appConfigs.releaseIt.dirName}/auto-changelog/templates/*.hbs`,
+      },
       ts: {
          src: './src/**/*.ts',
          all: [
@@ -48,6 +51,7 @@ module.exports = (grunt) => {
             // Should this path change we should update the resolved path to plugins
             // in src/release-it-config/config.ts.
             plugins: `./dist/${appConfigs.releaseIt.dirName}/plugins`,
+            templates: `./dist/${appConfigs.releaseIt.dirName}/auto-changelog/templates`,
          },
       },
       markdownlintConfig: grunt.file.readJSON('.markdownlint.json'),
@@ -107,6 +111,12 @@ module.exports = (grunt) => {
                   flatten: true,
                   src: config.js.releaseIt.plugins,
                   dest: config.out.releaseIt.plugins,
+               },
+               {
+                  expand: true,
+                  flatten: true,
+                  src: config.hbs.templates,
+                  dest: config.out.releaseIt.templates,
                },
             ],
          },

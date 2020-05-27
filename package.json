@@ -8,12 +8,7 @@
   },
   "scripts": {
     "commitlint": "commitlint --from f59a7f4498aa76e29c33888d01aec18a3d81b343",
-    "test": "check-node-version --npm 6.13.4",
-    "release": "standard-version",
-    "release:local": "node ./dist/release-it-config/cli/index.js --dev",
-    "release:tag": "npm run release:local -- --tag",
-    "release:rc": "npm run release:local -- --pre-release=rc",
-    "release:help": "npm run release:local -- --help"
+    "test": "check-node-version --npm 6.13.4"
   },
   "repository": {
     "type": "git",
@@ -36,8 +31,11 @@
   "dependencies": {
     "@commitlint/cli": "8.3.5",
     "@commitlint/travis-cli": "8.3.5",
-    "check-node-version": "4.0.3",
     "@release-it/conventional-changelog": "1.1.4",
+    "auto-changelog": "2.1.0",
+    "check-node-version": "4.0.3",
+    "conventional-changelog-conventionalcommits": "4.3.0",
+    "conventional-recommended-bump": "6.0.9",
     "grunt-markdownlint": "2.9.0",
     "grunt-sass-lint": "0.2.2",
     "markdownlint": "0.19.0",
@@ -46,13 +44,12 @@
     "underscore": "1.9.2"
   },
   "devDependencies": {
-    "@commitlint/cli": "8.3.5",
-    "@commitlint/config-conventional": "8.3.4",
-    "@commitlint/travis-cli": "8.3.5",
     "@silvermine/chai-strictly-equal": "1.1.0",
     "@silvermine/eslint-config": "3.0.0-rc.0",
     "@silvermine/typescript-config": "0.10.0",
     "@types/chai": "4.1.7",
+    "@types/conventional-recommended-bump": "6.0.0",
+    "@types/line-reader": "0.0.29",
     "@types/mocha": "5.2.5",
     "@types/node": "8.10.36",
     "@types/sinon": "5.0.5",
@@ -70,6 +67,7 @@
     "grunt-contrib-watch": "1.1.0",
     "grunt-eslint": "22.0.0",
     "grunt-exec": "3.0.0",
+    "line-reader": "0.4.0",
     "mocha": "5.2.0",
     "nyc": "13.3.0",
     "sinon": "5.1.1",

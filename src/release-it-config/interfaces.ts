@@ -8,6 +8,7 @@ export interface IReleaseItOptions {
    plugins?: {
       [pluginName: string]: Record<string, unknown>;
    };
+   hooks?: Record<string, string>;
    preRelease?: string;
    git: {
       push?: boolean;

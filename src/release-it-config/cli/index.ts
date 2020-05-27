@@ -1,15 +1,16 @@
 #!/usr/bin/env node
 import releaseIt from 'release-it';
 import _ from 'underscore';
+import recommendedBump from 'conventional-recommended-bump';
 import releaseItOptions from '../';
-import { IReleaseItOptions } from '../interfaces';
+import autoChangelog from '../auto-changelog/auto-changelog';
 import {
    preReleaseCommand,
    tag,
    helpCommand,
 } from './commands';
 
-const run = (): void => {
+const run = async (): Promise<void> => {
    const args = process.argv || [],
          config = Object.assign({}, releaseItOptions);
 
@@ -23,15 +24,6 @@ const run = (): void => {
       });
 
       return matchedArgument ? matchedArgument.split('--')[1] : '';
-   };
-
-   const runRelease = (options: IReleaseItOptions): void => {
-      Object.assign(releaseItOptions, options);
-
-      releaseIt(options)
-         .then((output: any) => {
-            console.log('(silvermine-release) finished:', output); // eslint-disable-line
-         });
    };
 
    let isExecutable = false;
@@ -59,7 +51,22 @@ const run = (): void => {
       return;
    }
 
-   runRelease(config);
+   // TODO: Determine if recommended-bump is still needed:
+   recommendedBump({ preset: 'conventionalcommits' }, (error: unknown, recommendation: Record<string, any>) => {
+      if (error) {
+         console.log('Error getting recommended bump:', error); // eslint-disable-line
+      }
+
+      console.log('Recommended bump:', recommendation); // eslint-disable-line
+   });
+
+   Object.assign(releaseItOptions, config);
+
+   const releaseResults = await releaseIt(config);
+
+   await autoChangelog();
+
+   console.log('(silvermine-release) finished:', releaseResults.version); // eslint-disable-line
 };
 
 try {
