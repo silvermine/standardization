@@ -1,6 +1,6 @@
 {
   "name": "@silvermine/standardization",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Standardization utilities for Silvermine projects",
   "scripts": {
     "test": "check-node-version --npm 6.13.4",
