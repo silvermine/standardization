@@ -5,7 +5,7 @@
   "scripts": {
     "test": "check-node-version --npm 6.13.4",
     "release": "standard-version",
-    "commitlint": "commitlint --from 65c4626"
+    "commitlint": "commitlint --from f59a7f4498aa76e29c33888d01aec18a3d81b343"
   },
   "repository": {
     "type": "git",
