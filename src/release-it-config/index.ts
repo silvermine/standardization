@@ -5,7 +5,7 @@ import {
 import process from 'process';
 import {
    AUTOCHANGELOG_COMMAND,
-   LATEST_VALID_TAG_COMMAND
+   LATEST_VALID_TAG_COMMAND,
 } from '../index';
 
 const RELEASE_VERSION_NAME = 'release v${version}';
@@ -43,12 +43,12 @@ const config: IReleaseItOptions = {
       publish: false,
    },
    gitHub: REPOSITORY_RELEASE_SETTINGS,
-   gitLab: REPOSITORY_RELEASE_SETTINGS
+   gitLab: REPOSITORY_RELEASE_SETTINGS,
 };
 
 export {
    CHANGELOG_INFILE,
-   LATEST_VALID_TAG_COMMAND
+   LATEST_VALID_TAG_COMMAND,
 };
 
 export default config;

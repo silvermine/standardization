@@ -5,26 +5,26 @@ import { promisify } from 'util';
 import executeShellCommand from '../utilities/execute-shell-command';
 import {
    AUTOCHANGELOG_COMMAND,
-   CHANGELOG_INFILE
+   CHANGELOG_INFILE,
 } from '../index';
 import {
    CHANGELOG_HEADER,
-   CHANGELOG_FOOTER
+   CHANGELOG_FOOTER,
 } from './index';
 
 // Provides a line count for the provided string.
-const getMultilineStringLineCount = (multilineString: string) => {
+const getMultilineStringLineCount = (multilineString: string): number => {
    return multilineString.split(/\r\n|\r|\n/).length;
-}
+};
 
 // Returns the first line of a multiline string.
-const getFirstLineMultilineString = (multineString: string) => {
+const getFirstLineMultilineString = (multineString: string): string | undefined => {
    if (getMultilineStringLineCount(multineString) <= 0) {
       return multineString;
    }
 
-   return multineString.split('\n').find(line => line !== '');
-}
+   return multineString.split('\n').find((line) => { return line !== ''; });
+};
 
 /**
  * Reads the changelog at the provided path, starting at the provided line number,
@@ -53,7 +53,7 @@ const readCurrentChangelog = async (infile: string, startLineNumber: number): Pr
          lineCount = lineCount + 1;
       });
    });
-}
+};
 
 const run = async (): Promise<void> => {
    const stat = promisify(fs.stat),
@@ -104,7 +104,7 @@ const run = async (): Promise<void> => {
       CHANGELOG_HEADER,
       output,
       existingChangelog,
-      CHANGELOG_FOOTER
+      CHANGELOG_FOOTER,
    ];
 
    stream.write(fileOutput.join('\n'));

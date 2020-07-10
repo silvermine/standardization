@@ -3,7 +3,7 @@ import releaseIt from 'release-it';
 import _ from 'underscore';
 import recommendedBump from 'conventional-recommended-bump';
 import releaseItOptions from '../';
-import autoChangelog from '../auto-changelog/auto-changelog';
+import autoChangelog from '../../auto-changelog-config/auto-changelog';
 import {
    preReleaseCommand,
    tag,

@@ -9,6 +9,9 @@ module.exports = (grunt) => {
       releaseIt: {
          dirName: 'release-it-config',
       },
+      autoChangelog: {
+         dirName: 'auto-changelog-config',
+      },
    };
 
    config = {
@@ -23,7 +26,7 @@ module.exports = (grunt) => {
          },
       },
       hbs: {
-         templates: `./src/${appConfigs.releaseIt.dirName}/auto-changelog/templates/*.hbs`,
+         templates: `./src/${appConfigs.autoChangelog.dirName}/auto-changelog-config/templates/*.hbs`,
       },
       ts: {
          src: './src/**/*.ts',
@@ -35,6 +38,7 @@ module.exports = (grunt) => {
             standards: 'tsconfig.json',
             types: 'src/tsconfig.types.json',
             releaseIt: `src/${appConfigs.releaseIt.dirName}/tsconfig.json`,
+            autoChangelog: `src/${appConfigs.autoChangelog.dirName}/tsconfig.json`,
          },
       },
       commands: {
@@ -51,7 +55,9 @@ module.exports = (grunt) => {
             // Should this path change we should update the resolved path to plugins
             // in src/release-it-config/config.ts.
             plugins: `./dist/${appConfigs.releaseIt.dirName}/plugins`,
-            templates: `./dist/${appConfigs.releaseIt.dirName}/auto-changelog/templates`,
+         },
+         autoChangelog: {
+            templates: `./dist/${appConfigs.autoChangelog.dirName}/templates`,
          },
       },
       markdownlintConfig: grunt.file.readJSON('.markdownlint.json'),
@@ -92,8 +98,11 @@ module.exports = (grunt) => {
          types: {
             cmd: `${config.commands.tsc} -p ${config.ts.configs.types} --pretty`,
          },
-         silvermineRelease: {
+         releaseItConfig: {
             cmd: `${config.commands.tsc} -p ${config.ts.configs.releaseIt} --pretty`,
+         },
+         autoChangelogConfig: {
+            cmd: `${config.commands.tsc} -p ${config.ts.configs.autoChangelog} --pretty`,
          },
       },
 
@@ -116,7 +125,7 @@ module.exports = (grunt) => {
                   expand: true,
                   flatten: true,
                   src: config.hbs.templates,
-                  dest: config.out.releaseIt.templates,
+                  dest: config.out.autoChangelog.templates,
                },
             ],
          },
@@ -148,9 +157,9 @@ module.exports = (grunt) => {
    grunt.registerTask('standards-fix', [ 'eslint:fix' ]);
 
    grunt.registerTask('build-types', [ 'exec:types' ]);
-   grunt.registerTask('build-tools', [ 'exec:silvermineRelease' ]);
+   grunt.registerTask('build-tools', [ 'exec:releaseItConfig', 'exec:autoChangelogConfig' ]);
    grunt.registerTask('build-ts-outputs', [ 'concurrent:build-ts-outputs' ]);
-   grunt.registerTask('build', [ 'concurrent:build-ts-outputs', 'copy:main' ]);
+   grunt.registerTask('build', [ 'clean:dist', 'concurrent:build-ts-outputs', 'copy:main' ]);
 
    grunt.registerTask('develop', [ 'clean:dist', 'build', 'watch' ]);
 

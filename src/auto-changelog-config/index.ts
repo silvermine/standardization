@@ -1,7 +1,7 @@
 import path from 'path';
 import {
    CHANGELOG_INFILE,
-   LATEST_VALID_TAG
+   LATEST_VALID_TAG,
 } from '../index';
 
 const CHANGELOG_HEADER =
@@ -35,5 +35,5 @@ const AUTOCHANGELOG_COMMAND = [
 export {
    AUTOCHANGELOG_COMMAND,
    CHANGELOG_HEADER,
-   CHANGELOG_FOOTER
-}
+   CHANGELOG_FOOTER,
+};
