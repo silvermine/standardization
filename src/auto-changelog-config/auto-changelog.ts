@@ -2,13 +2,15 @@
 import fs from 'fs';
 import lineReader from 'line-reader';
 import { promisify } from 'util';
-import { exec } from 'child_process';
+import executeShellCommand from '../utilities/execute-shell-command';
 import {
    AUTOCHANGELOG_COMMAND,
-   CHANGELOG_INFILE,
+   CHANGELOG_INFILE
+} from '../index';
+import {
    CHANGELOG_HEADER,
    CHANGELOG_FOOTER
-} from '../index';
+} from './index';
 
 // Provides a line count for the provided string.
 const getMultilineStringLineCount = (multilineString: string) => {
@@ -23,27 +25,6 @@ const getFirstLineMultilineString = (multineString: string) => {
 
    return multineString.split('\n').find(line => line !== '');
 }
-
-/**
- * Executes auto-changelog and returns the results.
- */
-const runAutochangelog = (): Promise<string> => {
-   console.log('Generating changelog:', AUTOCHANGELOG_COMMAND, process.cwd()); // eslint-disable-line
-   return new Promise((resolve, reject) => {
-      exec(
-         AUTOCHANGELOG_COMMAND,
-         { cwd: process.cwd() },
-         (error, stdout) => {
-
-            if (error) {
-               reject(error);
-            }
-
-            resolve(stdout);
-         }
-      );
-   });
-};
 
 /**
  * Reads the changelog at the provided path, starting at the provided line number,
@@ -110,7 +91,7 @@ const run = async (): Promise<void> => {
    existingChangelog = await readCurrentChangelog(CHANGELOG_INFILE, changelogHeaderLineCount);
 
    // Get latest changelog.
-   output = await runAutochangelog();
+   output = await executeShellCommand(AUTOCHANGELOG_COMMAND, 'Generating changelog');
 
    if (getFirstLineMultilineString(existingChangelog) === getFirstLineMultilineString(output)) {
       console.log('No new changes detected, exiting.'); // eslint-disable-line
