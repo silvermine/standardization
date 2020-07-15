@@ -11,9 +11,12 @@ With a clean working directory, run:
 
 Begins the release process for a full release:
 
-   * Generates a changelog of bugfixes and features.
    * Calculates the next semver version number and bumps the version in `package.json`.
    * Commits the changes.
+   * Generates a changelog of all the features and bugfixes since the last release.
+
+At this point, it is recommended that you edit CHANGELOG.md as desired, then amend the
+release commits with those changes.
 
 ## Run a Prerelease
 
@@ -25,10 +28,15 @@ With a clean working directory, run:
 
 `silvermine-release --pre-release=alpha`
 
+...or an beta:
+
+`silvermine-release --pre-release=beta`
+
 Begins the release process for a pre-release version:
 
    * Calculates the next semver version number and bumps the version in `package.json`.
    * Commits the changes.
+   * Prints out a changelog of all the features and bugfixes since the last release.
 
 ## Tag the Release
 
@@ -42,6 +50,12 @@ Creates git tags for publishing a release:
    package.json.
    * Pushes the tag to your repository.
 
+## Print the changelog
+
+You can use the tool to get a report of the latest changes (even for a pre-release):
+
+`silvermine-release --changelog`
+
 ## NPM Scripts
 
 To avoid having to install the global package, you can also add npm scripts
@@ -54,6 +68,12 @@ For example:
    "release": "silvermine-release"
 ```
 
+## Using NPX
+
+Since version 5.2.0, NPM ships with [NPX](https://blog.npmjs.org/post/162869356040/introducing-npx-an-npm-package-runner),
+and it can be used to execute silvermine-release:
+
+`npx silvermine-release --{command}`
 
 ## Use Config Only
 
@@ -89,9 +109,10 @@ You can now run `release-it` commands, passing our config:
 something like `user/prepare-vYOUR.VERSION.NUMBER`.
 
 2. Run `silvermine-release --release` (or `--pre-release={rc | alpha | beta}`).
-   * During this step, silvermine-release will generate a changelog, and pause for editing.
-   * Press `Y` when you've finished editing the changelog to your liking.
    * Press `Y` when prompted to commit the version bump.
+   * silvermine-release will now generate a changelog.
+   * Edit the changelog as desired, then amend the previous commit with those changes
+     when you are finished.
    * Push the branch and create a PR or MR for the release.
 
 3. Once merged, run `silvermine-release --tag`.
@@ -112,8 +133,6 @@ Install the project globally: `npm i -g ./` or `npm link`
 
 ## Fixing Problems
 
-   * **Changelog editing**: If something goes wrong during the changelog step, you'll have
-   to reset your working directory so you can start over: `git reset HEAD --hard`.
    * **Commit/Bump**: If you need to bail out of the process during this step, you can simply
    issue `CTRL + C` and release-it will gracefully roll back any changes for you.
    * **Tagging**: If something goes wrong during this step (such as if you had changes locally
