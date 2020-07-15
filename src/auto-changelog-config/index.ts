@@ -1,8 +1,6 @@
 import path from 'path';
-import {
-   CHANGELOG_INFILE,
-   LATEST_VALID_TAG,
-} from '../index';
+import getLatestValidTag from '../utilities/get-latest-valid-tag';
+import { CHANGELOG_INFILE } from '../index';
 
 const CHANGELOG_HEADER =
 `# Changelog
@@ -17,23 +15,27 @@ const CHANGELOG_FOOTER =
 
 const AUTOCHANGELOG_TEMPLATE_PATH = `${path.resolve(__dirname)}/auto-changelog/templates/template.hbs`;
 
-// Auto-changlog command with options
-const AUTOCHANGELOG_COMMAND = [
-   'npx',
-   'auto-changelog',
-   '-p',
-   '--commit-limit false',
-   `--template ${AUTOCHANGELOG_TEMPLATE_PATH}`,
-   `--output ${CHANGELOG_INFILE}`,
-   '--unreleased-only',
-   // Pass latest tag to get correct changeset
-   `--latest-version ${LATEST_VALID_TAG}`,
-   '--stdout',
-]
-   .join(' ');
+// Generates auto-changlog command with options
+const autoChangelogCommand = async (): Promise<string> => {
+   const changelogPath = `${process.cwd()}/${CHANGELOG_INFILE}`;
+
+   return [
+      'npx',
+      'auto-changelog',
+      '-p',
+      '--commit-limit false',
+      `--template ${AUTOCHANGELOG_TEMPLATE_PATH}`,
+      `--output ${changelogPath}`,
+      '--unreleased-only',
+      // Pass latest tag to get correct changeset
+      `--latest-version ${await getLatestValidTag()}`,
+      '--stdout',
+   ]
+      .join(' ');
+};
 
 export {
-   AUTOCHANGELOG_COMMAND,
+   autoChangelogCommand,
    CHANGELOG_HEADER,
    CHANGELOG_FOOTER,
 };

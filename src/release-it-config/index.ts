@@ -2,15 +2,9 @@ import {
    IRepositoryReleaseSettings,
    IReleaseItOptions,
 } from './interfaces';
-import process from 'process';
-import {
-   AUTOCHANGELOG_COMMAND,
-   LATEST_VALID_TAG_COMMAND,
-} from '../index';
+import { LATEST_VALID_TAG_COMMAND } from '../index';
 
 const RELEASE_VERSION_NAME = 'release v${version}';
-
-const CHANGELOG_INFILE = process.cwd() + '/CHANGELOG.md';
 
 const REPOSITORY_RELEASE_SETTINGS: IRepositoryReleaseSettings = {};
 
@@ -34,9 +28,9 @@ const config: IReleaseItOptions = {
       tagName: 'v${version}',
       tagAnnotation: RELEASE_VERSION_NAME,
       commitMessage: 'chore: ' + RELEASE_VERSION_NAME,
-      // This uses the auto-changelog command to generate report changelogs
-      // in the CLI output
-      changelog: AUTOCHANGELOG_COMMAND,
+      // We're generating changelogs ourselves, so we disable
+      // it when running release-it.
+      changelog: false,
       requireUpstream: false,
    },
    npm: {
@@ -47,7 +41,6 @@ const config: IReleaseItOptions = {
 };
 
 export {
-   CHANGELOG_INFILE,
    LATEST_VALID_TAG_COMMAND,
 };
 

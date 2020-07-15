@@ -4,7 +4,7 @@ import lineReader from 'line-reader';
 import { promisify } from 'util';
 import executeShellCommand from '../utilities/execute-shell-command';
 import {
-   AUTOCHANGELOG_COMMAND,
+   autoChangelogCommand,
    CHANGELOG_INFILE,
 } from '../index';
 import {
@@ -59,6 +59,7 @@ const run = async (): Promise<void> => {
    const stat = promisify(fs.stat),
          writeFile = promisify(fs.writeFile),
          writeStream = fs.createWriteStream,
+         changelogPath = `${process.cwd()}/${CHANGELOG_INFILE}`,
          changelogHeaderLineCount = getMultilineStringLineCount(CHANGELOG_HEADER);
 
    let isChangelogExisiting = false,
@@ -69,17 +70,17 @@ const run = async (): Promise<void> => {
 
    // Check for the changelog file.
    try {
-      await stat(CHANGELOG_INFILE);
+      await stat(changelogPath);
       isChangelogExisiting = true;
    } catch(error) {
-      console.log('Changelog not present, creating...'); // eslint-disable-line
+      console.log(`Changelog ${changelogPath} not present, creating...`); // eslint-disable-line
    }
 
    if (!isChangelogExisiting) {
       try {
          // Create a write out the file with our template.
          await writeFile(
-            CHANGELOG_INFILE,
+            changelogPath,
             `${CHANGELOG_HEADER}${CHANGELOG_FOOTER}`
          );
       } catch(error) {
@@ -88,17 +89,17 @@ const run = async (): Promise<void> => {
    }
 
    // Store the file contents in memory.
-   existingChangelog = await readCurrentChangelog(CHANGELOG_INFILE, changelogHeaderLineCount);
+   existingChangelog = await readCurrentChangelog(changelogPath, changelogHeaderLineCount);
 
    // Get latest changelog.
-   output = await executeShellCommand(AUTOCHANGELOG_COMMAND, 'Generating changelog');
+   output = await executeShellCommand(await autoChangelogCommand(), 'Generating changelog');
 
    if (getFirstLineMultilineString(existingChangelog) === getFirstLineMultilineString(output)) {
       console.log('No new changes detected, exiting.'); // eslint-disable-line
       return;
    }
 
-   stream = writeStream(CHANGELOG_INFILE, { encoding: 'utf8' });
+   stream = writeStream(changelogPath, { encoding: 'utf8' });
 
    fileOutput = [
       CHANGELOG_HEADER,
@@ -109,7 +110,5 @@ const run = async (): Promise<void> => {
 
    stream.write(fileOutput.join('\n'));
 };
-
-run();
 
 export default run;

@@ -33,7 +33,10 @@ const run = async (): Promise<void> => {
       const argument = (findArgument(arg) || '').split('=')[0],
             option = getOption(arg);
 
-      if (argument === 'release') {
+      if (argument === 'changelog') {
+         isExecutingChangelog = true;
+         return false;
+      } else if (argument === 'release') {
          isExecutingChangelog = true;
          return true;
       } else if (argument === 'pre-release') {
