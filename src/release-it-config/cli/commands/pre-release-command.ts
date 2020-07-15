@@ -1,6 +1,10 @@
 import { IReleaseItOptions } from '../../interfaces';
 
-export default (options: string[], config: IReleaseItOptions): boolean => {
+export default (
+   options: string[],
+   config: IReleaseItOptions,
+   releaseType?: 'major' | 'minor' | 'patch'
+): boolean => {
    const option = options[0];
 
    const preReleaseWhitelist = [
@@ -17,6 +21,7 @@ export default (options: string[], config: IReleaseItOptions): boolean => {
       return false;
    }
 
+   config.increment = releaseType;
    config.preRelease = option;
    config.plugins = {};
    config.git.changelog = false;

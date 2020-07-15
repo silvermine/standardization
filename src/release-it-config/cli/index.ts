@@ -10,10 +10,9 @@ import {
    helpCommand,
 } from './commands';
 
-const getRecommendedVersion = (): Promise<Record<string, any>> => {
+const getRecommendedVersion = (): Promise<recommendedBump.Callback.Recommendation> => {
    return new Promise((resolve, reject) => {
-      // TODO: Determine if recommended-bump is still needed:
-      recommendedBump({ preset: 'conventionalcommits' }, (error: unknown, recommendation: Record<string, any>) => {
+      recommendedBump({ preset: 'conventionalcommits' }, (error: unknown, recommendation) => {
          if (error) {
             reject(error);
          }
@@ -41,7 +40,7 @@ const run = async (): Promise<void> => {
 
    let isExecutable = false,
        isExecutingChangelog = true,
-       recommendedVersion: Record<string, any> = {};
+       recommendedVersion: recommendedBump.Callback.Recommendation = {};
 
    recommendedVersion = await getRecommendedVersion();
 
@@ -56,7 +55,7 @@ const run = async (): Promise<void> => {
       } else if (argument === 'release') {
          return true;
       } else if (argument === 'pre-release') {
-         return preReleaseCommand([ option ], config);
+         return preReleaseCommand([ option ], config, recommendedVersion.releaseType);
       } else if (argument === 'tag') {
          isExecutingChangelog = false;
          return tag(config);

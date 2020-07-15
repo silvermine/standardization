@@ -24,4 +24,5 @@ export interface IReleaseItOptions {
    };
    gitHub?: IRepositoryReleaseSettings;
    gitLab?: IRepositoryReleaseSettings;
+   increment?: 'major' | 'minor' | 'patch';
 }
