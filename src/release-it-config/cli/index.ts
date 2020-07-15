@@ -68,7 +68,7 @@ const run = async (): Promise<void> => {
    }
 
    if (isExecutingChangelog) {
-      await autoChangelog();
+      await autoChangelog(isExecutable);
    }
 
    console.log('(silvermine-release) finished'); // eslint-disable-line

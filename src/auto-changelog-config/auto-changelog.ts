@@ -55,7 +55,12 @@ const readCurrentChangelog = async (infile: string, startLineNumber: number): Pr
    });
 };
 
-const run = async (): Promise<void> => {
+/**
+ * Runs auto-changelog with our custom options.
+ *
+ * @param isPrintOnly If set to true, the changelog will only be printed to the console.
+ */
+const run = async (isPrintOnly = false): Promise<void> => {
    const stat = promisify(fs.stat),
          writeFile = promisify(fs.writeFile),
          writeStream = fs.createWriteStream,
@@ -95,20 +100,25 @@ const run = async (): Promise<void> => {
    output = await executeShellCommand(await autoChangelogCommand(), 'Generating changelog');
 
    if (getFirstLineMultilineString(existingChangelog) === getFirstLineMultilineString(output)) {
-      console.log('No new changes detected, exiting.'); // eslint-disable-line
+      console.log('Most recent changelog:\n', output); // eslint-disable-line
+      console.log('No new changes detected, exiting...'); // eslint-disable-line
       return;
    }
 
-   stream = writeStream(changelogPath, { encoding: 'utf8' });
+   if (!isPrintOnly) {
+      stream = writeStream(changelogPath, { encoding: 'utf8' });
 
-   fileOutput = [
-      CHANGELOG_HEADER,
-      output,
-      existingChangelog,
-      CHANGELOG_FOOTER,
-   ];
+      fileOutput = [
+         CHANGELOG_HEADER,
+         output,
+         existingChangelog,
+         CHANGELOG_FOOTER,
+      ];
 
-   stream.write(fileOutput.join('\n'));
+      stream.write(fileOutput.join('\n'));
+   }
+
+   console.log('Changelog generated!', output); // eslint-disable-line
 };
 
 export default run;
