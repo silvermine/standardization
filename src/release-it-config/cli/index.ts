@@ -40,6 +40,7 @@ const run = async (): Promise<void> => {
 
    let isExecutable = false,
        isExecutingChangelog = true,
+       isChangelogPrintOnly = false,
        recommendedVersion: recommendedBump.Callback.Recommendation = {};
 
    recommendedVersion = await getRecommendedVersion();
@@ -55,6 +56,7 @@ const run = async (): Promise<void> => {
       } else if (argument === 'release') {
          return true;
       } else if (argument === 'pre-release') {
+         isChangelogPrintOnly = true;
          return preReleaseCommand([ option ], config, recommendedVersion.releaseType);
       } else if (argument === 'tag') {
          isExecutingChangelog = false;
@@ -76,7 +78,7 @@ const run = async (): Promise<void> => {
    }
 
    if (isExecutingChangelog) {
-      const isPrintChangelogOnly = !isExecutable;
+      const isPrintChangelogOnly = !isExecutable || isChangelogPrintOnly;
 
       await autoChangelog(isPrintChangelogOnly);
    }
