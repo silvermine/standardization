@@ -19,6 +19,8 @@ const AUTOCHANGELOG_TEMPLATE_PATH = `${path.resolve(__dirname)}/templates/templa
 const autoChangelogCommand = async (): Promise<string> => {
    const changelogPath = `${process.cwd()}/${CHANGELOG_INFILE}`;
 
+   const latestTag = await getLatestValidTag();
+
    return [
       'npx',
       'auto-changelog',
@@ -27,9 +29,9 @@ const autoChangelogCommand = async (): Promise<string> => {
       `--template ${AUTOCHANGELOG_TEMPLATE_PATH}`,
       `--output ${changelogPath}`,
       '--unreleased-only',
-      // Pass latest tag to get correct changeset
-      `--latest-version ${await getLatestValidTag()}`,
       '--stdout',
+      // Pass latest tag to get correct changeset
+      `--latest-version ${latestTag}`,
    ]
       .join(' ');
 };
