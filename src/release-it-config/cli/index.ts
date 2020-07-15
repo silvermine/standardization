@@ -40,7 +40,7 @@ const run = async (): Promise<void> => {
    };
 
    let isExecutable = false,
-       isExecutingChangelog = false,
+       isExecutingChangelog = true,
        recommendedVersion: Record<string, any> = {};
 
    recommendedVersion = await getRecommendedVersion();
@@ -52,22 +52,22 @@ const run = async (): Promise<void> => {
             option = getOption(arg);
 
       if (argument === 'changelog') {
-         isExecutingChangelog = true;
          return false;
       } else if (argument === 'release') {
-         isExecutingChangelog = true;
          return true;
       } else if (argument === 'pre-release') {
          return preReleaseCommand([ option ], config);
       } else if (argument === 'tag') {
+         isExecutingChangelog = false;
          return tag(config);
       }
 
       return false;
    });
 
-   if ((!isExecutable || findArgument('--help') === 'help') && !isExecutingChangelog) {
+   if ((!isExecutable && !isExecutingChangelog) || findArgument('--help') === 'help') {
       helpCommand();
+      return;
    }
 
    if (isExecutable) {
@@ -77,7 +77,9 @@ const run = async (): Promise<void> => {
    }
 
    if (isExecutingChangelog) {
-      await autoChangelog(isExecutable);
+      const isPrintChangelogOnly = !isExecutable;
+
+      await autoChangelog(isPrintChangelogOnly);
    }
 
    console.log('(silvermine-release) finished'); // eslint-disable-line
