@@ -26,13 +26,15 @@ const run = async (): Promise<void> => {
       return matchedArgument ? matchedArgument.split('--')[1] : '';
    };
 
-   let isExecutable = false;
+   let isExecutable = false,
+       isExecutingChangelog = false;
 
    isExecutable = _.some(args, (arg: string): boolean => {
       const argument = (findArgument(arg) || '').split('=')[0],
             option = getOption(arg);
 
       if (argument === 'release') {
+         isExecutingChangelog = true;
          return true;
       } else if (argument === 'pre-release') {
          return preReleaseCommand([ option ], config);
@@ -64,7 +66,9 @@ const run = async (): Promise<void> => {
 
    const releaseResults = await releaseIt(config);
 
-   await autoChangelog();
+   if (isExecutingChangelog) {
+      await autoChangelog();
+   }
 
    console.log('(silvermine-release) finished:', releaseResults.version); // eslint-disable-line
 };
