@@ -7,9 +7,9 @@
     "silvermine-release": "./dist/release-it-config/cli/index.js"
   },
   "scripts": {
-      "prepare": "grunt build",
-      "commitlint": "commitlint --from f59a7f4498aa76e29c33888d01aec18a3d81b343",
-      "test": "check-node-version --npm 6.13.4"
+    "prepare": "grunt build",
+    "commitlint": "commitlint --from f59a7f4498aa76e29c33888d01aec18a3d81b343",
+    "test": "check-node-version --npm 6.13.4"
   },
   "repository": {
     "type": "git",
@@ -39,6 +39,7 @@
     "conventional-recommended-bump": "6.0.9",
     "grunt-markdownlint": "2.9.0",
     "grunt-sass-lint": "0.2.2",
+    "line-reader": "0.4.0",
     "markdownlint": "0.19.0",
     "release-it": "13.6.0",
     "tslib": "1.9.3",
@@ -68,7 +69,6 @@
     "grunt-contrib-watch": "1.1.0",
     "grunt-eslint": "22.0.0",
     "grunt-exec": "3.0.0",
-    "line-reader": "0.4.0",
     "mocha": "5.2.0",
     "nyc": "13.3.0",
     "sinon": "5.1.1",
