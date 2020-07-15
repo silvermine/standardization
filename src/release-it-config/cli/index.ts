@@ -10,6 +10,19 @@ import {
    helpCommand,
 } from './commands';
 
+const getRecommendedVersion = (): Promise<Record<string, any>> => {
+   return new Promise((resolve, reject) => {
+      // TODO: Determine if recommended-bump is still needed:
+      recommendedBump({ preset: 'conventionalcommits' }, (error: unknown, recommendation: Record<string, any>) => {
+         if (error) {
+            reject(error);
+         }
+
+         resolve(recommendation);
+      });
+   });
+};
+
 const run = async (): Promise<void> => {
    const args = process.argv || [],
          config = Object.assign({}, releaseItOptions);
@@ -27,7 +40,12 @@ const run = async (): Promise<void> => {
    };
 
    let isExecutable = false,
-       isExecutingChangelog = false;
+       isExecutingChangelog = false,
+       recommendedVersion: Record<string, any> = {};
+
+   recommendedVersion = await getRecommendedVersion();
+
+   console.log('recommended version', recommendedVersion);  // eslint-disable-line
 
    isExecutable = _.some(args, (arg: string): boolean => {
       const argument = (findArgument(arg) || '').split('=')[0],
@@ -51,15 +69,6 @@ const run = async (): Promise<void> => {
    if ((!isExecutable || findArgument('--help') === 'help') && !isExecutingChangelog) {
       helpCommand();
    }
-
-   // TODO: Determine if recommended-bump is still needed:
-   recommendedBump({ preset: 'conventionalcommits' }, (error: unknown, recommendation: Record<string, any>) => {
-      if (error) {
-         console.log('Error getting recommended bump:', error); // eslint-disable-line
-      }
-
-      console.log('Recommended bump:', recommendation); // eslint-disable-line
-   });
 
    if (isExecutable) {
       Object.assign(releaseItOptions, config);
