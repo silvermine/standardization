@@ -1,5 +1,4 @@
 import path from 'path';
-import getLatestValidTag from '../utilities/get-latest-valid-tag';
 import { CHANGELOG_INFILE } from '../index';
 
 const CHANGELOG_HEADER =
@@ -19,8 +18,6 @@ const AUTOCHANGELOG_TEMPLATE_PATH = `${path.resolve(__dirname)}/templates/templa
 const autoChangelogCommand = async (): Promise<string> => {
    const changelogPath = `${process.cwd()}/${CHANGELOG_INFILE}`;
 
-   const latestTag = await getLatestValidTag();
-
    return [
       'npx',
       'auto-changelog',
@@ -30,8 +27,6 @@ const autoChangelogCommand = async (): Promise<string> => {
       `--output ${changelogPath}`,
       '--unreleased-only',
       '--stdout',
-      // Pass latest tag to get correct changeset
-      `--latest-version ${latestTag}`,
    ]
       .join(' ');
 };
