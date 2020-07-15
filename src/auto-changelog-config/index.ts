@@ -13,7 +13,7 @@ const CHANGELOG_FOOTER =
 `[commit-messages]: https://github.com/silvermine/silvermine-info/blob/master/commit-history.md#commit-messages
 `;
 
-const AUTOCHANGELOG_TEMPLATE_PATH = `${path.resolve(__dirname)}/auto-changelog/templates/template.hbs`;
+const AUTOCHANGELOG_TEMPLATE_PATH = `${path.resolve(__dirname)}/templates/template.hbs`;
 
 // Generates auto-changlog command with options
 const autoChangelogCommand = async (): Promise<string> => {

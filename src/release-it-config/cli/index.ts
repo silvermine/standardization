@@ -48,12 +48,8 @@ const run = async (): Promise<void> => {
       return false;
    });
 
-   if (!isExecutable || findArgument('--help') === 'help') {
+   if ((!isExecutable || findArgument('--help') === 'help') && !isExecutingChangelog) {
       helpCommand();
-   }
-
-   if (!isExecutable) {
-      return;
    }
 
    // TODO: Determine if recommended-bump is still needed:
@@ -65,15 +61,17 @@ const run = async (): Promise<void> => {
       console.log('Recommended bump:', recommendation); // eslint-disable-line
    });
 
-   Object.assign(releaseItOptions, config);
+   if (isExecutable) {
+      Object.assign(releaseItOptions, config);
 
-   const releaseResults = await releaseIt(config);
+      await releaseIt(config);
+   }
 
    if (isExecutingChangelog) {
       await autoChangelog();
    }
 
-   console.log('(silvermine-release) finished:', releaseResults.version); // eslint-disable-line
+   console.log('(silvermine-release) finished'); // eslint-disable-line
 };
 
 try {

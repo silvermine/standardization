@@ -26,7 +26,7 @@ module.exports = (grunt) => {
          },
       },
       hbs: {
-         templates: `./src/${appConfigs.autoChangelog.dirName}/auto-changelog-config/templates/*.hbs`,
+         templates: `./src/${appConfigs.autoChangelog.dirName}/templates/*.hbs`,
       },
       ts: {
          src: './src/**/*.ts',
