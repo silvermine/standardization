@@ -7,7 +7,7 @@ If you have this project installed globally you can use the following commands:
 
 With a clean working directory, run:
 
-`silvermine-release --release`
+`silvermine-release release`
 
 Begins the release process for a full release:
 
@@ -22,15 +22,15 @@ release commits with those changes.
 
 With a clean working directory, run:
 
-`silvermine-release --pre-release=rc`
+`silvermine-release pre-release=rc`
 
 ...or an alpha:
 
-`silvermine-release --pre-release=alpha`
+`silvermine-release pre-release=alpha`
 
 ...or an beta:
 
-`silvermine-release --pre-release=beta`
+`silvermine-release pre-release=beta`
 
 Begins the release process for a pre-release version:
 
@@ -42,7 +42,7 @@ Begins the release process for a pre-release version:
 
 With a clean working directory, run:
 
-`silvermine-release --tag`
+`silvermine-release tag`
 
 Creates git tags for publishing a release:
 
@@ -54,7 +54,14 @@ Creates git tags for publishing a release:
 
 You can use the tool to get a report of the latest changes (even for a pre-release):
 
-`silvermine-release --changelog`
+`silvermine-release changelog`
+
+You can also write out the latest changes to `CHANGELOG.md`:
+
+`silvermine-release changelog --write`
+
+NOTE: This will output a header with the current version of the project from `package.json`,
+regardless of what it is.
 
 ## NPM Scripts
 
@@ -64,8 +71,8 @@ to your `package.json`'s `scripts: {}` object.
 For example:
 
 ```json
-   "release-rc": "silvermine-release --pre-release=rc",
-   "release": "silvermine-release"
+   "release-rc": "silvermine-release pre-release=rc",
+   "release": "silvermine-release release"
 ```
 
 ## Using NPX
@@ -73,7 +80,7 @@ For example:
 Since version 5.2.0, NPM ships with [NPX](https://blog.npmjs.org/post/162869356040/introducing-npx-an-npm-package-runner),
 and it can be used to execute silvermine-release:
 
-`npx silvermine-release --{command}`
+`npx silvermine-release {command}`
 
 ## Use Config Only
 
@@ -108,14 +115,14 @@ You can now run `release-it` commands, passing our config:
 1. With a clean working directory, checkout a branch for your release,
 something like `user/prepare-vYOUR.VERSION.NUMBER`.
 
-2. Run `silvermine-release --release` (or `--pre-release={rc | alpha | beta}`).
+2. Run `silvermine-release release` (or `pre-release={rc | alpha | beta}`).
    * Press `Y` when prompted to commit the version bump.
    * silvermine-release will now generate a changelog.
    * Edit the changelog as desired, then amend the previous commit with those changes
      when you are finished.
    * Push the branch and create a PR or MR for the release.
 
-3. Once merged, run `silvermine-release --tag`.
+3. Once merged, run `silvermine-release tag`.
    * Press `Y` to tag the release.
    * Press `Y` to push the tags.
 
