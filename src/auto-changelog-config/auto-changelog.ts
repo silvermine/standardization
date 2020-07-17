@@ -58,9 +58,12 @@ const readCurrentChangelog = async (infile: string, startLineNumber: number): Pr
 /**
  * Runs auto-changelog with our custom options.
  *
- * @param isPrintOnly If set to true, the changelog will only be printed to the console.
+ * @param isWritingToFile If set to true, the changelog will write out
+ * changes to the changelog.
+ * @param args Any additional arguments to be provided to auto-changelog
+ * see: <https://github.com/CookPete/auto-changelog#usage>
  */
-const run = async (isWritingToFile = false): Promise<void> => {
+const run = async (isWritingToFile = false, args: string[] = []): Promise<void> => {
    const stat = promisify(fs.stat),
          writeFile = promisify(fs.writeFile),
          writeStream = fs.createWriteStream,
@@ -71,7 +74,8 @@ const run = async (isWritingToFile = false): Promise<void> => {
        existingChangelog = '',
        stream: fs.WriteStream,
        fileOutput: string[],
-       output: string;
+       output: string,
+       generatedLineCount: number;
 
    // Check for the changelog file.
    try {
@@ -97,10 +101,18 @@ const run = async (isWritingToFile = false): Promise<void> => {
    existingChangelog = await readCurrentChangelog(changelogPath, changelogHeaderLineCount);
 
    // Get latest changelog.
-   output = await executeShellCommand(await autoChangelogCommand(), 'Generating changelog');
+   output = await executeShellCommand(await autoChangelogCommand(args), 'Generating changelog');
 
-   if (getFirstLineMultilineString(existingChangelog) === getFirstLineMultilineString(output)) {
-      console.log('Most recent changelog:\n', output); // eslint-disable-line
+   generatedLineCount = output.split('\n').length;
+
+   // There's no new changelog to generate if:
+   // 1. The first line of the current changelog matches the first line of
+   //    the newly generated changelog.
+   // 2. Less than 2 lines of generated output were found. This typically
+   //    indicates that all auto-changelog had to go one was a release with
+   //    0 usable commits.
+   if (generatedLineCount <= 2 || getFirstLineMultilineString(existingChangelog) === getFirstLineMultilineString(output)) {
+      console.log('Most recent changelog:\n\n', output); // eslint-disable-line
       console.log('No new changes detected, exiting...'); // eslint-disable-line
       return;
    }
@@ -118,7 +130,7 @@ const run = async (isWritingToFile = false): Promise<void> => {
       stream.write(fileOutput.join('\n'));
    }
 
-   console.log('Changelog generated!', output); // eslint-disable-line
+   console.log('Changelog generated!\n', output); // eslint-disable-line
 };
 
 export default run;

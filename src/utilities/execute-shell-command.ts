@@ -20,7 +20,9 @@ export default (command: string, logMessage: string): Promise<string> => {
                reject(error);
             }
 
-            resolve(stdout);
+            // Return the output, removing any newlines at beginning
+            // or end of string.
+            resolve(stdout.replace(/^\n|\n$/g, ''));
          }
       );
    });

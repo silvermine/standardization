@@ -22,15 +22,17 @@ release commits with those changes.
 
 With a clean working directory, run:
 
-`silvermine-release pre-release=rc`
+`silvermine-release pre-release`
 
-...or an alpha:
+This will generate an `rc` release by default.
 
-`silvermine-release pre-release=alpha`
+You can also generate an `alpha` release:
 
-...or an beta:
+`silvermine-release pre-release --prefix=alpha`
 
-`silvermine-release pre-release=beta`
+...or a `beta`:
+
+`silvermine-release pre-release --prefix=beta`
 
 Begins the release process for a pre-release version:
 
@@ -71,7 +73,7 @@ to your `package.json`'s `scripts: {}` object.
 For example:
 
 ```json
-   "release-rc": "silvermine-release pre-release=rc",
+   "release-rc": "silvermine-release pre-release",
    "release": "silvermine-release release"
 ```
 

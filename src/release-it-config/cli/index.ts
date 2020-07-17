@@ -24,11 +24,13 @@ const getRecommendedVersion = (): Promise<recommendedBump.Callback.Recommendatio
 
 const run = async (): Promise<void> => {
    const args = process.argv || [],
-         config = Object.assign({}, releaseItOptions);
+         config = Object.assign({}, releaseItOptions),
+         // TODO: Support additional args for auto-changelog
+         changelogArgs: string[] = [];
 
    // Find a single argument if provided to a subcommand.
    // Example: silvermine-release my-command=argument
-   const getArgment = (arg: string): string => {
+   const getArgument = (arg: string): string => {
       return arg.split('=')[1];
    };
 
@@ -52,26 +54,31 @@ const run = async (): Promise<void> => {
 
    let isExecutable = false,
        isExecutingChangelog = true,
+       isWritingChangelog = false,
        recommendedVersion: recommendedBump.Callback.Recommendation = {};
 
    recommendedVersion = await getRecommendedVersion();
 
    isExecutable = _.some(args, (arg: string): boolean => {
-      const subCommand = (findSubCommand(arg) || '').split('=')[0],
-            option = getArgment(arg);
+      const subCommand = (findSubCommand(arg) || '').split('=')[0];
 
       if (subCommand === 'changelog') {
          return false;
       } else if (subCommand === 'release') {
+         isWritingChangelog = true;
+
          return true;
       } else if (subCommand === 'pre-release') {
-         const preReleaseCommandResults = preReleaseCommand([ option ], config, recommendedVersion.releaseType);
+         const prefix = getArgument(findSwitch('prefix'));
 
-         isExecutingChangelog = preReleaseCommandResults;
+         const preReleaseCommandResults = preReleaseCommand(prefix, config, recommendedVersion.releaseType);
+
+         isExecutingChangelog = false;
 
          return preReleaseCommandResults;
       } else if (subCommand === 'tag') {
          isExecutingChangelog = false;
+
          return tag(config);
       }
 
@@ -92,14 +99,10 @@ const run = async (): Promise<void> => {
    }
 
    if (isExecutingChangelog) {
-      await autoChangelog(!!findSwitch('write'));
+      await autoChangelog(isWritingChangelog || !!findSwitch('write'), changelogArgs);
    }
 
    console.log('(silvermine-release) finished'); // eslint-disable-line no-console
 };
 
-try {
-   run();
-} catch(error) {
-   console.error(error); // eslint-disable-line no-console
-}
+run();
