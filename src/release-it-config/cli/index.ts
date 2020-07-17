@@ -26,39 +26,51 @@ const run = async (): Promise<void> => {
    const args = process.argv || [],
          config = Object.assign({}, releaseItOptions);
 
-   const getOption = (arg: string): string => {
+   // Find a single argument if provided to a subcommand.
+   // Example: silvermine-release my-command=argument
+   const getArgment = (arg: string): string => {
       return arg.split('=')[1];
    };
 
-   const findArgument = (arg: string): string => {
-      const matchedArgument = args.find((i: string) => {
+   // Find a single switch if provided along with commands.
+   // Example: silvermine-release my-command --switch
+   const findSwitch = (arg: string): string => {
+      const matchedSwitch = args.find((i: string) => {
          return i.indexOf(arg) > -1;
       });
 
-      return matchedArgument ? matchedArgument.split('--')[1] : '';
+      return matchedSwitch ? matchedSwitch.split('--')[1] : '';
+   };
+
+   // Find a single subcommand provided to the tool.
+   // Example: silvermine-release im-a-command
+   const findSubCommand = (arg: string): string => {
+      const argIndex = args.indexOf(arg);
+
+      return argIndex > -1 ? args[argIndex] : '';
    };
 
    let isExecutable = false,
        isExecutingChangelog = true,
-       isChangelogPrintOnly = false,
        recommendedVersion: recommendedBump.Callback.Recommendation = {};
 
    recommendedVersion = await getRecommendedVersion();
 
-   console.log('recommended version', recommendedVersion);  // eslint-disable-line
-
    isExecutable = _.some(args, (arg: string): boolean => {
-      const argument = (findArgument(arg) || '').split('=')[0],
-            option = getOption(arg);
+      const subCommand = (findSubCommand(arg) || '').split('=')[0],
+            option = getArgment(arg);
 
-      if (argument === 'changelog') {
+      if (subCommand === 'changelog') {
          return false;
-      } else if (argument === 'release') {
+      } else if (subCommand === 'release') {
          return true;
-      } else if (argument === 'pre-release') {
-         isChangelogPrintOnly = true;
-         return preReleaseCommand([ option ], config, recommendedVersion.releaseType);
-      } else if (argument === 'tag') {
+      } else if (subCommand === 'pre-release') {
+         const preReleaseCommandResults = preReleaseCommand([ option ], config, recommendedVersion.releaseType);
+
+         isExecutingChangelog = preReleaseCommandResults;
+
+         return preReleaseCommandResults;
+      } else if (subCommand === 'tag') {
          isExecutingChangelog = false;
          return tag(config);
       }
@@ -66,28 +78,28 @@ const run = async (): Promise<void> => {
       return false;
    });
 
-   if ((!isExecutable && !isExecutingChangelog) || findArgument('--help') === 'help') {
+   if ((!isExecutable && !isExecutingChangelog) || !!findSwitch('help')) {
       helpCommand();
       return;
    }
 
    if (isExecutable) {
+      console.log('Recommended version:', recommendedVersion); // eslint-disable-line no-console
+
       Object.assign(releaseItOptions, config);
 
       await releaseIt(config);
    }
 
    if (isExecutingChangelog) {
-      const isPrintChangelogOnly = !isExecutable || isChangelogPrintOnly;
-
-      await autoChangelog(isPrintChangelogOnly);
+      await autoChangelog(!!findSwitch('write'));
    }
 
-   console.log('(silvermine-release) finished'); // eslint-disable-line
+   console.log('(silvermine-release) finished'); // eslint-disable-line no-console
 };
 
 try {
    run();
 } catch(error) {
-   console.error(error); // eslint-disable-line
+   console.error(error); // eslint-disable-line no-console
 }

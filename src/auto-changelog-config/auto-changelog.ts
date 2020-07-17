@@ -60,7 +60,7 @@ const readCurrentChangelog = async (infile: string, startLineNumber: number): Pr
  *
  * @param isPrintOnly If set to true, the changelog will only be printed to the console.
  */
-const run = async (isPrintOnly = false): Promise<void> => {
+const run = async (isWritingToFile = false): Promise<void> => {
    const stat = promisify(fs.stat),
          writeFile = promisify(fs.writeFile),
          writeStream = fs.createWriteStream,
@@ -105,7 +105,7 @@ const run = async (isPrintOnly = false): Promise<void> => {
       return;
    }
 
-   if (!isPrintOnly) {
+   if (isWritingToFile) {
       stream = writeStream(changelogPath, { encoding: 'utf8' });
 
       fileOutput = [
