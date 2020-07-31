@@ -58,12 +58,9 @@ You can use the tool to get a report of the latest changes (even for a pre-relea
 
 `silvermine-release changelog`
 
-You can also write out the latest changes to `CHANGELOG.md`:
-
-`silvermine-release changelog --write`
-
-NOTE: This will output a header with the current version of the project from `package.json`,
-regardless of what it is.
+NOTE: A future version will provide our own changelog generation that better suits our needs.
+For now, this is here for convenience or if the developer needs a quick way to get most recent
+changes from the project history.
 
 ## NPM Scripts
 
@@ -119,9 +116,10 @@ something like `user/prepare-vYOUR.VERSION.NUMBER`.
 
 2. Run `silvermine-release release` (or `pre-release={rc | alpha | beta}`).
    * Press `Y` when prompted to commit the version bump.
-   * silvermine-release will now generate a changelog.
-   * Edit the changelog as desired, then amend the previous commit with those changes
-     when you are finished.
+   * If you need to maintain a changelog, you can grab a list of commits
+     from the output of `silvermine-release changelog`, and manually add
+     any commits you desire. Amend the rewlease commit with your
+     changelog edits.
    * Push the branch and create a PR or MR for the release.
 
 3. Once merged, run `silvermine-release tag`.

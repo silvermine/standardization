@@ -54,7 +54,6 @@ const run = async (): Promise<void> => {
 
    let isExecutable = false,
        isExecutingChangelog = true,
-       isWritingChangelog = false,
        recommendedVersion: recommendedBump.Callback.Recommendation = {};
 
    recommendedVersion = await getRecommendedVersion();
@@ -65,8 +64,6 @@ const run = async (): Promise<void> => {
       if (subCommand === 'changelog') {
          return false;
       } else if (subCommand === 'release') {
-         isWritingChangelog = true;
-
          return true;
       } else if (subCommand === 'pre-release') {
          const prefix = getArgument(findSwitch('prefix'));
@@ -99,7 +96,9 @@ const run = async (): Promise<void> => {
    }
 
    if (isExecutingChangelog) {
-      await autoChangelog(isWritingChangelog || !!findSwitch('write'), changelogArgs);
+      // TODO: We will implement our own changelog generator since auto-changelog does
+      // not support our requirements. Until then, disabling writing out the changelog.
+      await autoChangelog(false, changelogArgs);
    }
 
    console.log('(silvermine-release) finished'); // eslint-disable-line no-console
