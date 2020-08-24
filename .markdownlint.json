@@ -20,7 +20,7 @@
    "commands-show-output": true,
    "line-length": {
       "line_length": 90,
-      "code_block_line_length": 130
+      "code_block_line_length": 140
    },
    "no-missing-space-atx": true,
    "no-multiple-space-atx": true,
