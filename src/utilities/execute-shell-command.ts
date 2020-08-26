@@ -8,7 +8,7 @@ import { exec } from 'child_process';
  */
 export default (command: string, logMessage: string): Promise<string> => {
 
-   console.log(`${logMessage}:`, command); // eslint-disable-line
+   console.log(`${logMessage}:`, command); // eslint-disable-line no-console
 
    return new Promise((resolve, reject) => {
       exec(

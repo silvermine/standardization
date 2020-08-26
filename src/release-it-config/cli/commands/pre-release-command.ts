@@ -15,7 +15,7 @@ export default (
    const prereleasePrefix = _.isEmpty(option) ? 'rc' : option;
 
    if (prereleasePrefix !== 'rc' && preReleaseWhitelist.indexOf(prereleasePrefix) === -1) {
-      // eslint-disable-next-line
+      // eslint-disable-next-line no-console
       console.error(
          `Please provide a valid pre-release type such as: ${preReleaseWhitelist.join(', ')}`
       );

@@ -82,7 +82,7 @@ const run = async (isWritingToFile = false, args: string[] = []): Promise<void> 
       await stat(changelogPath);
       isChangelogExisiting = true;
    } catch(error) {
-      console.log(`Changelog ${changelogPath} not present, creating...`); // eslint-disable-line
+      console.log(`Changelog ${changelogPath} not present, creating...`); // eslint-disable-line no-console
    }
 
    if (!isChangelogExisiting) {
@@ -93,7 +93,7 @@ const run = async (isWritingToFile = false, args: string[] = []): Promise<void> 
             `${CHANGELOG_HEADER}${CHANGELOG_FOOTER}`
          );
       } catch(error) {
-         console.error('Error creating file:', error); // eslint-disable-line
+         console.error('Error creating file:', error); // eslint-disable-line no-console
       }
    }
 
@@ -112,8 +112,8 @@ const run = async (isWritingToFile = false, args: string[] = []): Promise<void> 
    //    indicates that all auto-changelog had to go one was a release with
    //    0 usable commits.
    if (generatedLineCount <= 2 || getFirstLineMultilineString(existingChangelog) === getFirstLineMultilineString(output)) {
-      console.log('Most recent changelog:\n\n', output); // eslint-disable-line
-      console.log('No new changes detected, exiting...'); // eslint-disable-line
+      console.log('Most recent changelog:\n\n', output); // eslint-disable-line no-console
+      console.log('No new changes detected, exiting...'); // eslint-disable-line no-console
       return;
    }
 
@@ -130,7 +130,7 @@ const run = async (isWritingToFile = false, args: string[] = []): Promise<void> 
       stream.write(fileOutput.join('\n'));
    }
 
-   console.log('Changelog generated!\n', output); // eslint-disable-line
+   console.log('Changelog generated!\n', output); // eslint-disable-line no-console
 };
 
 export default run;
