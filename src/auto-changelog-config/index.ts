@@ -2,6 +2,7 @@ import path from 'path';
 import { CHANGELOG_INFILE, LATEST_VALID_TAG_COMMAND } from '../index';
 import executeShellCommand from '../utilities/execute-shell-command';
 
+// TODO: this will be replaced in the future with overrideable templates.
 const CHANGELOG_HEADER =
 `# Changelog
 

@@ -49,7 +49,7 @@ With a clean working directory, run:
 Creates git tags for publishing a release:
 
    * Creates the local tag based on the current version found in
-   package.json.
+     package.json.
    * Pushes the tag to your repository.
 
 ## Print the changelog
@@ -112,13 +112,13 @@ You can now run `release-it` commands, passing our config:
 ## Release Process
 
 1. With a clean working directory, checkout a branch for your release,
-something like `user/prepare-vYOUR.VERSION.NUMBER`.
+   something like `user/prepare-vYOUR.VERSION.NUMBER`.
 
 2. Run `silvermine-release release` (or `pre-release={rc | alpha | beta}`).
    * Press `Y` when prompted to commit the version bump.
    * If you need to maintain a changelog, you can grab a list of commits
      from the output of `silvermine-release changelog`, and manually add
-     any commits you desire. Amend the rewlease commit with your
+     any commits you desire. Amend the release commit with your
      changelog edits.
    * Push the branch and create a PR or MR for the release.
 
@@ -141,9 +141,9 @@ Install the project globally: `npm i -g ./` or `npm link`
 ## Fixing Problems
 
    * **Commit/Bump**: If you need to bail out of the process during this step, you can simply
-   issue `CTRL + C` and release-it will gracefully roll back any changes for you.
+     issue `CTRL + C` and release-it will gracefully roll back any changes for you.
    * **Tagging**: If something goes wrong during this step (such as if you had changes locally
-   but not on the remote), you will either have to:
+     but not on the remote), you will either have to:
       * Delete the local/remote tag: `git tag -d TAGNAME`, `git push -d origin TAGNAME`
       * Or, if you have the tag locally, but not remotely, push the tag manually:
         `git push origin TAGNAME`.
