@@ -8,7 +8,7 @@
   },
   "scripts": {
     "prepare": "grunt build",
-    "commitlint": "commitlint --from d350706",
+    "commitlint": "commitlint --from e574e34",
     "test": "check-node-version --npm 6.13.4"
   },
   "repository": {
