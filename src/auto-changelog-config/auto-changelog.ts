@@ -70,7 +70,7 @@ const run = async (isWritingToFile = false, args: string[] = []): Promise<void> 
          changelogPath = `${process.cwd()}/${CHANGELOG_INFILE}`,
          changelogHeaderLineCount = getMultilineStringLineCount(CHANGELOG_HEADER);
 
-   let isChangelogExisiting = false,
+   let hasChangelog = false,
        existingChangelog = '',
        stream: fs.WriteStream,
        fileOutput: string[],
@@ -80,14 +80,14 @@ const run = async (isWritingToFile = false, args: string[] = []): Promise<void> 
    // Check for the changelog file.
    try {
       await stat(changelogPath);
-      isChangelogExisiting = true;
+      hasChangelog = true;
    } catch(error) {
       console.log(`Changelog ${changelogPath} not present, creating...`); // eslint-disable-line no-console
    }
 
-   if (!isChangelogExisiting) {
+   if (!hasChangelog) {
       try {
-         // Create a write out the file with our template.
+         // Write out the changelog file with our template.
          await writeFile(
             changelogPath,
             `${CHANGELOG_HEADER}${CHANGELOG_FOOTER}`
@@ -105,12 +105,21 @@ const run = async (isWritingToFile = false, args: string[] = []): Promise<void> 
 
    generatedLineCount = output.split('\n').length;
 
-   // There's no new changelog to generate if:
-   // 1. The first line of the current changelog matches the first line of
-   //    the newly generated changelog.
-   // 2. Less than 2 lines of generated output were found. This typically
-   //    indicates that all auto-changelog had to go one was a release with
-   //    0 usable commits.
+   /**
+    *  There's no new changelog to generate if:
+    * 1. The first line of the current changelog matches the first line of
+    *    the newly generated changelog.
+    * 2. Less than 3 lines of generated output were found. This typically
+    *    indicates that all auto-changelog had to go on was a release with
+    *    0 usable commits, thus producing a document without a usable changelog.
+    *
+    *    A usable changelog will contain:
+    *       Line 1. An empty line (between the incoming changelog lines and the
+    *               document header above it)
+    *       Line 2. A header for the release
+    *       Line 3. Another empty line
+    *       Line 4. At least one list item containing a changelog entry
+    */
    if (generatedLineCount <= 2 || getFirstLineMultilineString(existingChangelog) === getFirstLineMultilineString(output)) {
       console.log('Most recent changelog:\n\n', output); // eslint-disable-line no-console
       console.log('No new changes detected, exiting...'); // eslint-disable-line no-console
