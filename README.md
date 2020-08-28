@@ -115,7 +115,31 @@ grunt.loadNpmTasks('grunt-markdownlint');
 grunt.registerTask('standards', [ 'markdownlint' ]);
 ```
 
-TODO: fill in details and examples here.
+
+### silvermine-release (Release It!)
+
+This project contains the `silvermine-release` CLI tool, which automates our release
+process. Under the hood the tool uses [Release It!](https://www.npmjs.com/package/release-it).
+
+### Prepare Repository
+
+Each repository that will use these release tools should have its `repository.url`
+specified as HTTPS, so that conventional-changelog can correctly generate links to
+commit hashes.
+
+Example:
+
+```json
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/silvermine/standardization.git"
+  },
+```
+
+### Usage
+
+For usage details see [the silvermine-release docs](src/release-it-config/README.md).
+
 
 ## License
 

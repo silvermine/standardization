@@ -1,0 +1,27 @@
+{{!
+NOTES:
+
+* Indentation is purposeful in commit list statements, so that our markdown
+  will be formatted correctly.
+*
+}}
+{{#each releases}}
+   {{#if href}}
+      ## [{{title}}]({{href}}){{#if tag}} - ({{isoDate}}){{/if}}
+   {{else}}
+      ## {{title}}{{#if tag}} - ({{isoDate}}){{/if}}
+   {{/if}}
+
+   {{#if summary}}
+      {{summary}}
+   {{/if}}
+
+   {{#commit-list commits heading='### Features' message='feat: '}}
+         * {{#if breaking}}**Breaking change:** {{/if}}{{subject}} {{#if href}}[`{{shorthash}}`]({{href}}){{/if}}
+   {{/commit-list}}
+
+   {{#commit-list commits heading='### Bug Fixes' message='fix: '}}
+         * {{#if breaking}}**Breaking change:** {{/if}}{{subject}} {{#if href}}[`{{shorthash}}`]({{href}}){{/if}}
+   {{/commit-list}}
+
+{{/each}}

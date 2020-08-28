@@ -1,0 +1,12 @@
+{
+   "extends": "@silvermine/typescript-config/tsconfig.commonjs.json",
+   "compilerOptions": {
+      "outDir": "../../dist"
+   },
+   "include": [
+      "index.ts",
+      "types/**/*",
+      "cli/**/*",
+      "auto-changelog.ts"
+   ]
+}
