@@ -1,11 +1,11 @@
-import preReleaseCommand from './pre-release-command';
-import tag from './tag-command';
-import helpCommand from './help-command';
+import preReleaseCommand from './pre-release';
+import tag from './tag';
+import helpCommand from './help';
 
 export {
    preReleaseCommand,
    tag,
-   // If any new commands are added, the message in `help-command`
+   // If any new commands are added, the message in `help`
    // should be updated.
    helpCommand,
 };
