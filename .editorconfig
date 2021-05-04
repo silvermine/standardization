@@ -7,3 +7,7 @@ indent_style = space
 indent_size = 3
 
 charset = utf-8
+
+# NPM always uses 2 space indents
+[{package.json,package-lock.json}]
+indent_size = 2
