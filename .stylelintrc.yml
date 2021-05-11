@@ -1,0 +1,84 @@
+# We are using stylelint-config-standard for all of the base rules designed more broadly
+# for CSS. The stylelint-scss plugin provides us with more SCSS specific rules. Those
+# rules are prefixed by `scss/`
+extends: stylelint-config-standard
+plugins:
+   - stylelint-scss
+rules:
+   # Turn off the following rule since our ltr/rtl approach generally violates it.
+   no-descending-specificity: null
+   # Turn off config-standard rule in favor of the scss/at-rule-no-unknown rule
+   at-rule-no-unknown: null
+   scss/at-rule-no-unknown: true
+   # General rules
+   indentation: 3
+   linebreaks: unix
+   no-eol-whitespace: true
+   no-missing-end-of-source-newline: true
+   no-empty-first-line: true
+   max-line-length:
+      - 140
+      - ignorePattern:
+         - /https?://[0-9,a-z]*.*/
+   max-empty-lines: 1
+   string-quotes: single
+   string-no-newline: true
+   color-hex-case: lower
+   color-hex-length: long
+   color-no-invalid-hex: true
+   no-invalid-position-at-import-rule: null
+   number-leading-zero: always
+   number-no-trailing-zeros: true
+   unit-case: lower
+   unit-no-unknown: true
+   property-no-unknown: true
+   block-no-empty: true
+   value-keyword-case: lower
+   length-zero-no-unit: true
+   function-comma-space-after: always-single-line
+   function-comma-space-before: never
+   function-parentheses-space-inside: never-single-line
+   function-linear-gradient-no-nonstandard-direction: true
+   function-calc-no-invalid: true
+   function-calc-no-unspaced-operator: true
+   selector-pseudo-class-no-unknown: true
+   selector-pseudo-element-no-unknown: true
+   selector-type-no-unknown: true
+   declaration-block-no-duplicate-properties: true
+   declaration-block-no-shorthand-property-overrides: true
+   declaration-colon-space-after: always
+   declaration-colon-space-before: never
+   declaration-block-trailing-semicolon: always
+   declaration-empty-line-before: never
+   comment-whitespace-inside: always
+   rule-empty-line-before:
+      - always
+      - ignore:
+         - after-comment
+         - inside-block
+   # Collection of rules for if/else statements
+   at-rule-empty-line-before:
+      - always
+      - ignoreAtRules:
+         - else
+        ignore:
+         - after-comment
+         - first-nested
+         - inside-block
+         - blockless-after-same-name-blockless
+   block-opening-brace-space-before: always
+   block-closing-brace-newline-after:
+      - always
+      - ignoreAtRules:
+         - if
+         - else
+   at-rule-name-space-after: always
+   scss/at-else-closing-brace-newline-after: always-last-in-chain
+   scss/at-else-closing-brace-space-after: always-intermediate
+   scss/at-else-empty-line-before: never
+   scss/at-if-closing-brace-newline-after: always-last-in-chain
+   scss/at-if-closing-brace-space-after: always-intermediate
+   # End collection of rules for if/else statements
+   scss/at-extend-no-missing-placeholder: true
+   scss/at-function-parentheses-space-before: never
+   scss/at-mixin-parentheses-space-before: never
