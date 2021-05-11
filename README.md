@@ -36,27 +36,10 @@ repos.
 
 ## Usage
 
-### sass-lint
+### SASS Linting
 
-Add the following command to your Gruntfile.js, register the grunt-sass-lint plugin,
-and add the `sasslint` command to the `standards` task:
-
-```javascript
-sasslint: {
-   options: {
-      configFile: 'node_modules/@silvermine/standardization/sass-lint.yml',
-   },
-   target: './path/to/scss/source/**/*.scss',
-},
-
-// Register grunt-sass-lint like so:
-
-grunt.loadNpmTasks('grunt-sass-lint');
-
-// Then include the command along with `grunt standards`
-
-grunt.registerTask('standards', [ 'sasslint' ]);
-```
+TODO: We removed our sass-lint dependency because it was no longer being updated. We need
+to replace it with our internal configuration for grunt-stylelint. See #21
 
 
 ### EditorConfig
