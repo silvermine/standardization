@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "Standardization utilities for Silvermine projects",
   "scripts": {
-    "test": "check-node-version --npm 6.13.4",
+    "test": "check-node-version --npm 6.14.12",
     "release": "standard-version",
     "commitlint": "commitlint --from f59a7f4498aa76e29c33888d01aec18a3d81b343"
   },
