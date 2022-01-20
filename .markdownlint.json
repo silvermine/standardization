@@ -43,5 +43,6 @@
    "no-alt-text": false,
    "code-block-style": { "style": "fenced" },
    "single-trailing-newline": true,
-   "code-fence-style": { "style": "backtick" }
+   "code-fence-style": { "style": "backtick" },
+   "no-inline-html": false
 }
