@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
    var config;
 
    config = {
@@ -10,6 +10,10 @@ module.exports = function (grunt) {
          },
       },
 
+      js: {
+         all: [ '*.js', 'scripts/**/*.js' ],
+      },
+
       markdownlintConfig: grunt.file.readJSON('.markdownlint.json'),
    };
 
@@ -17,6 +21,10 @@ module.exports = function (grunt) {
 
       pkg: grunt.file.readJSON('package.json'),
       config: config,
+
+      eslint: {
+         target: config.js.all,
+      },
 
       markdownlint: {
          all: {
@@ -28,8 +36,9 @@ module.exports = function (grunt) {
       },
    });
 
+   grunt.loadNpmTasks('grunt-eslint');
    grunt.loadNpmTasks('grunt-markdownlint');
 
    grunt.registerTask('default', [ 'standards' ]);
-   grunt.registerTask('standards', [ 'markdownlint' ]);
+   grunt.registerTask('standards', [ 'eslint', 'markdownlint' ]);
 };
