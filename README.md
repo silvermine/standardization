@@ -18,6 +18,7 @@ This repo aggregates many of the standards we use when developing our software, 
    * SASS linting
    * Commit message linting
    * Editor configuration
+   * Browserslist configuration files
 
 Notably, we have extensive JavaScript and TypeScript linting that is _not_ included in
 this repo. See [@silvermine/eslint-config][eslintconfig] and
@@ -113,7 +114,26 @@ grunt.loadNpmTasks('grunt-markdownlint');
 grunt.registerTask('standards', [ 'markdownlint' ]);
 ```
 
-TODO: fill in details and examples here.
+
+### Browserlist
+
+[Browserslist](https://github.com/browserslist/browserslist) provides configuration that
+various front-end tools (Babel, Autoprefixer) use to determine which browsers should be
+supported.
+
+Symlink the appropriate .browserslistrc file to the root of your project.
+
+For projects which require broad browser support (public-facing projects):
+
+`ln -s
+./node_modules/@silvermine/standardization/browserslist/.browserslistrc-broad-support
+.browserslistrc`
+
+For projects which only need limited browser support (internal projects):
+
+`ln -s
+./node_modules/@silvermine/standardization/browserslist/.browserslistrc-narrow-support
+.browserslistrc`
 
 
 ### Release Process
