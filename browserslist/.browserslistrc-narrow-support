@@ -1,0 +1,10 @@
+# List of browsers that we support. This list is targeting narrow support of browsers used
+# worldwide and is ideal for any internal projects where the users will primarily be on
+# the latest browser versions. This config is used by tooling such as Bable and
+# Autoprefixer.
+
+> 0.5%
+last 2 versions
+not dead
+not ie <= 11
+not OperaMini
