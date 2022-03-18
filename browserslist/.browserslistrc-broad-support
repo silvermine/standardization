@@ -1,0 +1,9 @@
+# List of browsers that we support. This list is targeting broad support of browsers used
+# worldwide and is ideal for any public-facing projects. This config is used by tooling
+# such as Babel and Autoprefixer.
+
+> 0.1%
+last 3 versions
+not dead
+not android < 5.1
+not ios < 12.0
