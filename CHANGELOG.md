@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [our coding standards][commit-messages] for commit guidelines.
 
+## [1.3.0](https://github.com/silvermine/standardization/compare/v1.2.1...v1.3.0) (2022-03-18)
+
+
+### Features
+
+* Add Browserslist configuration options ([#24](https://github.com/silvermine/standardization/issues/24)) ([676ea20](https://github.com/silvermine/standardization/commit/676ea202c0681210b88ed031f6ff4d02a29f6b15))
+* add script to simplify the package release process ([#27](https://github.com/silvermine/standardization/issues/27)) ([c5d0f3c](https://github.com/silvermine/standardization/commit/c5d0f3cc393031ca4e53b7576a220778ed9a1927))
+
+
 ### [1.2.1](https://github.com/silvermine/standardization/compare/v1.2.0...v1.2.1) (2022-01-25)
 
 
