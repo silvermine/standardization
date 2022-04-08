@@ -91,27 +91,22 @@ for your editor:
      before running `npm test`
 
 
-### markdownlint
+### Markdownlint
 
-Add the following configuration to your Gruntfile.js, register the task, and add
-the `markdownlint` task to the `standards` command:
+Add the following script to package.json, and adjust the ignore argument as needed
+to suit the needs of the project. Then add a call to markdownlint in the `standards`
+NPM script.
 
-```javascript
-// Inside initConfig...
-markdownlint: {
-   all: {
-      src: [ './path/to/markdown/file.md' ],
-      options: {
-         config: grunt.file.readJSON('.markdownlint.json'),
-      },
-   },
-},
+See [Migration to `standards` NPM script](#migration-to-standards-npm-script)
 
-// Register the task:
-grunt.loadNpmTasks('grunt-markdownlint');
+```json
+{
+   "scripts": {
+      "markdownlint": "markdownlint -c .markdownlint.json -i CHANGELOG.md '{,!(node_modules)/**/}*.md'",
+      "standards": "npm run markdownlint && grunt standards"
+   }
+}
 
-// Add the command to `grunt standards`:
-grunt.registerTask('standards', [ 'markdownlint' ]);
 ```
 
 
@@ -265,6 +260,28 @@ rc` option (Values like `alpha` and `beta` also work). For example:
 npm release:preview -- --prerelease rc
 npm release:prep-changelog -- --prerelease rc
 npm release:finalize -- --prerelease rc
+```
+
+### Migration to `standards` NPM script
+
+At some point we will be migrating away from grunt as a task runner. To facilitate this future
+transition, we should begin adding a NPM script called `standards` to `package.json`. Where
+impractical to remove grunt altogether from a project, we should:
+
+   * Add the `standards` NPM script
+   * Add calls to any linting and standards-related NPM scripts to this new script
+   * Add a call to `grunt standards` inside of this script
+   * Remove calls to `grunt standards` from CI configuration files (`.travis.yml`, etc)
+   * Add a call to `npm run standards` to these CI configuration files
+
+Example:
+
+```json
+{
+   "scripts": {
+      "standards": "npm run markdownlint && grunt standards"
+   }
+}
 ```
 
 ## License
