@@ -264,15 +264,22 @@ npm release:finalize -- --prerelease rc
 
 ### Migration to `standards` NPM script
 
-At some point we will be migrating away from grunt as a task runner. To facilitate this future
-transition, we should begin adding a NPM script called `standards` to `package.json`. Where
-impractical to remove grunt altogether from a project, we should:
+We are in the process of migrating away from grunt as a task runner. This being the case,
+we are switching from `grunt standards` to `npm run standards` as our default "run the
+linting/standards checks" command. The goal is to help reduce cognitive load for
+developers when they begin work on a project. For example, they will not have to
+ask the question:
 
-   * Add the `standards` NPM script
-   * Add calls to any linting and standards-related NPM scripts to this new script
-   * Add a call to `grunt standards` inside of this script
-   * Remove calls to `grunt standards` from CI configuration files (`.travis.yml`, etc)
-   * Add a call to `npm run standards` to these CI configuration files
+> "What's the standards command I need to run? Does this project still use grunt?".
+
+When updating projects, even if they still use `grunt` as the primary build tool,
+we should:
+
+1. Add a new `standards` NPM script which will run all the linting and standards-related scripts
+   * If the project still relies on `grunt standards`, this script should contain a call to
+     `grunt standards`
+2. Replace any calls to `grunt standards` with `npm run standards` in CI configuration files
+   (`.travis.yml`, etc)
 
 Example:
 
