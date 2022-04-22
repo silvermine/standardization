@@ -91,27 +91,22 @@ for your editor:
      before running `npm test`
 
 
-### markdownlint
+### Markdownlint
 
-Add the following configuration to your Gruntfile.js, register the task, and add
-the `markdownlint` task to the `standards` command:
+Add the following script to package.json, and adjust the ignore argument as needed
+to suit the needs of the project. Then add a call to markdownlint in the `standards`
+NPM script.
 
-```javascript
-// Inside initConfig...
-markdownlint: {
-   all: {
-      src: [ './path/to/markdown/file.md' ],
-      options: {
-         config: grunt.file.readJSON('.markdownlint.json'),
-      },
-   },
-},
+See [Migration to `standards` NPM script](#migration-to-standards-npm-script)
 
-// Register the task:
-grunt.loadNpmTasks('grunt-markdownlint');
+```json
+{
+   "scripts": {
+      "markdownlint": "markdownlint -c .markdownlint.json -i CHANGELOG.md '{,!(node_modules)/**/}*.md'",
+      "standards": "npm run markdownlint && grunt standards"
+   }
+}
 
-// Add the command to `grunt standards`:
-grunt.registerTask('standards', [ 'markdownlint' ]);
 ```
 
 
@@ -265,6 +260,35 @@ rc` option (Values like `alpha` and `beta` also work). For example:
 npm release:preview -- --prerelease rc
 npm release:prep-changelog -- --prerelease rc
 npm release:finalize -- --prerelease rc
+```
+
+### Migration to `standards` NPM script
+
+We are in the process of migrating away from grunt as a task runner. This being the case,
+we are switching from `grunt standards` to `npm run standards` as our default "run the
+linting/standards checks" command. The goal is to help reduce cognitive load for
+developers when they begin work on a project. For example, they will not have to
+ask the question:
+
+> "What's the standards command I need to run? Does this project still use grunt?".
+
+When updating projects, even if they still use `grunt` as the primary build tool,
+we should:
+
+1. Add a new `standards` NPM script which will run all the linting and standards-related scripts
+   * If the project still relies on `grunt standards`, this script should contain a call to
+     `grunt standards`
+2. Replace any calls to `grunt standards` with `npm run standards` in CI configuration files
+   (`.travis.yml`, etc)
+
+Example:
+
+```json
+{
+   "scripts": {
+      "standards": "npm run markdownlint && grunt standards"
+   }
+}
 ```
 
 ## License
