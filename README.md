@@ -39,24 +39,17 @@ repos.
 
 ### SASS Linting
 
-Add the following command to your Gruntfile.js, register the grunt-stylelint plugin, and
-add the `stylelint` command to the `standards` task:
+Add a `.stylelintrc.yml` file to the root of your project with the following contents:
 
-```javascript
-stylelint: {
-   options: {
-      configFile: './node_modules/@silvermine/standardization/.stylelintrc.yml',
-   },
-   src: './path/to/scss/source/**/*.scss',
-},
-
-// Register grunt-stylelint like so:
-grunt.loadNpmTasks('grunt-stylelint');
-
-// Then include the command along with `grunt standards`
-grunt.registerTask('standards', [ 'stylelint' ]);
+```yml
+extends: ./node_modules/@silvermine/standardization/.stylelintrc.yml
 ```
 
+Add a command the the `scripts` object of your project's `package.json` file as follows:
+
+```json
+"stylelint": "stylelint './path/to/scss/source/**/*.scss'"
+```
 
 ### EditorConfig
 
@@ -97,13 +90,11 @@ Add the following script to package.json, and adjust the ignore argument as need
 to suit the needs of the project. Then add a call to markdownlint in the `standards`
 NPM script.
 
-See [Migration to `standards` NPM script](#migration-to-standards-npm-script)
-
 ```json
 {
    "scripts": {
       "markdownlint": "markdownlint -c .markdownlint.json -i CHANGELOG.md '{,!(node_modules)/**/}*.md'",
-      "standards": "npm run markdownlint && grunt standards"
+      "standards": "npm run markdownlint && npm run eslint"
    }
 }
 
