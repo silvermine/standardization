@@ -2,10 +2,7 @@
 
 [![NPM Version](https://img.shields.io/npm/v/@silvermine/standardization.svg)](https://www.npmjs.com/package/@silvermine/standardization)
 [![License](https://img.shields.io/github/license/silvermine/standardization.svg)](./LICENSE)
-[![Build Status](https://travis-ci.com/silvermine/standardization.svg?branch=master)](https://travis-ci.com/silvermine/standardization)
-[![Coverage Status](https://coveralls.io/repos/github/silvermine/standardization/badge.svg?branch=master)](https://coveralls.io/github/silvermine/standardization?branch=master)
-[![Dependency Status](https://david-dm.org/silvermine/standardization.svg)](https://david-dm.org/silvermine/standardization)
-[![Dev Dependency Status](https://david-dm.org/silvermine/standardization/dev-status.svg)](https://david-dm.org/silvermine/standardization#info=devDependencies&view=table)
+[![Build Status](https://app.travis-ci.com/silvermine/standardization.svg?branch=master)](https://app.travis-ci.com/silvermine/standardization)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
 
 
