@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [our coding standards][commit-messages] for commit guidelines.
 
+## [2.0.0](https://github.com/silvermine/standardization/compare/v1.3.0...v2.0.0) (2022-04-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* Removes Grunt.js support dependencies. Consumers that still
+rely on Grunt.js as a build system will need to include their own Grunt.js
+dependencies when upgrading to this version of Standardization.
+
+### Miscellaneous Chores
+
+* remove Grunt.js dependencies and configuration ([494a52c](https://github.com/silvermine/standardization/commit/494a52c2787368563ca9bfc0897709fbdf6f3c80))
+
+
 ## [1.3.0](https://github.com/silvermine/standardization/compare/v1.2.1...v1.3.0) (2022-03-18)
 
 
