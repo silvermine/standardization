@@ -86,7 +86,7 @@ for your editor:
 
 ### Markdownlint
 
-Add a file named `.markdownlint.json` to the root of you project with the
+Add a file named `.markdownlint.json` to the root of your project with the
 following content:
 
 ```json
