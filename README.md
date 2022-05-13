@@ -86,6 +86,15 @@ for your editor:
 
 ### Markdownlint
 
+Add a file named `.markdownlint.json` to the root of you project with the
+following content:
+
+```json
+{
+   "extends": "./node_modules/@silvermine/standardization/.markdownlint.json"
+}
+```
+
 Add the following script to package.json, and adjust the ignore argument as needed
 to suit the needs of the project. Then add a call to markdownlint in the `standards`
 NPM script.
