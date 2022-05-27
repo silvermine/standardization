@@ -1,8 +1,7 @@
+dist: focal
 language: node_js
 node_js:
-  # TODO: Restore the pipeline for latest Node.js when Travis fixes their
-  # pipeline dependency problems. See #39
-  # - "node" # Latest node version
+  - "node" # Latest node version
   - "lts/*" # Latest LTS version
   - "16"
   - "14"
