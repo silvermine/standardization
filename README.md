@@ -190,7 +190,7 @@ At a high-level, the process for releasing a new version of a package is:
       npm run standards && npm test
       ```
 
-   1. Run `npm release:prep-changelog`. You should now be on a branch named
+   1. Run `npm run release:prep-changelog`. You should now be on a branch named
       `changelog-v${NEW_VERSION}` containing the automatically generated changelog
       additions.
       * If you receive the message "There were no changelog entries generated" and this is
@@ -208,7 +208,7 @@ At a high-level, the process for releasing a new version of a package is:
    1. Once the changelog has been merged, checkout and update the branch that is to be
       released. The last commit should be the merge commit for the updates to the
       changelog.
-   1. Run `npm release:finalize`
+   1. Run `npm run release:finalize`
    1. Preview the changes and push the branch and `v${NEW_VERSION}` tag to the correct
       remote repo
    1. If the version should be published and this is not handled by a CI/CD pipeline, run
@@ -216,7 +216,7 @@ At a high-level, the process for releasing a new version of a package is:
 
 ##### Special Cases
 
-In most cases, `npm release:preview`, `npm release:prep-changelog`, and `npm
+In most cases, `npm run release:preview`, `npm run release:prep-changelog`, and `npm run
 release:finalize` will be run without any additional options. However, there are a few
 cases when you may need to supply extra options.
 
@@ -228,9 +228,9 @@ problem. The release script will want to bump the package to v0.2.0 or v0.1.1. A
 version of 0.1.0 has to be specified using the `--version` option. For example:
 
 ```bash
-npm release:preview -- --version 0.1.0
-npm release:prep-changelog -- --version 0.1.0
-npm release:finalize -- --version 0.1.0
+npm run release:preview -- --version 0.1.0
+npm run release:prep-changelog -- --version 0.1.0
+npm run release:finalize -- --version 0.1.0
 ```
 
 ###### Releasing v1.0.0
@@ -240,9 +240,9 @@ version. As such, a package's version will stay &lt;v1.0.0 until you tell the re
 script to publish v1.0.0. This can be done using the `--version` option. For example:
 
 ```bash
-npm release:preview -- --version 1.0.0
-npm release:prep-changelog -- --version 1.0.0
-npm release:finalize -- --version 1.0.0
+npm run release:preview -- --version 1.0.0
+npm run release:prep-changelog -- --version 1.0.0
+npm run release:finalize -- --version 1.0.0
 ```
 
 ###### Prerelease Version (e.g. Alpha, Beta, Release Candidate)
@@ -254,9 +254,9 @@ a v1.1.0-rc.0 before creating the final v1.1.0. To do this, you can pass a `--pr
 rc` option (Values like `alpha` and `beta` also work). For example:
 
 ```bash
-npm release:preview -- --prerelease rc
-npm release:prep-changelog -- --prerelease rc
-npm release:finalize -- --prerelease rc
+npm run release:preview -- --prerelease rc
+npm run release:prep-changelog -- --prerelease rc
+npm run release:finalize -- --prerelease rc
 ```
 
 ### Migration to `standards` NPM script
