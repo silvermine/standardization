@@ -107,6 +107,26 @@ NPM script.
 
 ```
 
+### check-node-version
+
+Add a `check-node-version` task to package.json, providing the desired version of Node.js and
+NPM that you wish to enforce. Execute it as part of the `test` NPM script as well.
+
+```json
+{
+   "scripts": {
+      "check-node-version": "check-node-version --node 16.15.0 --npm 8.5.5",
+      "test": "npm run check-node-version && nyc mocha -- -R spec 'tests/**/*.test.js'"
+   }
+}
+
+```
+
+`check-node-version` allows us to enforce a Node.js and NPM version for our projects. It's
+possible that some processes in some projects could fail when the wrong version of Node.js
+is enabled in the developer's environment. This helps eliminate one factor from the equation
+when troubleshooting.
+
 ### Executing ESLint
 
 When ESLint is needed for a project, add an `eslint` task to package.json, and execute it as
