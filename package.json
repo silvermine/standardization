@@ -9,7 +9,7 @@
     "release:prep-changelog": "node ./scripts/release.js prep-changelog",
     "release:finalize": "node ./scripts/release.js finalize",
     "markdownlint": "markdownlint -c .markdownlint.json -i CHANGELOG.md '{,!(node_modules)/**/}*.md'",
-    "eslint": "eslint '{,!(node_modules|dist)/**/}*.js'",
+    "eslint": "eslint .",
     "standards": "npm run markdownlint && npm run eslint"
   },
   "repository": {

@@ -13,6 +13,7 @@ This repo aggregates many of the standards we use when developing our software, 
    * Release process standardization
    * Markdown linting
    * SASS linting
+   * Executing (but not configuring) JS/TS linting
    * Commit message linting
    * Editor configuration
    * Browserslist configuration files
@@ -106,6 +107,19 @@ NPM script.
 
 ```
 
+### Executing ESLint
+
+When ESLint is needed for a project, add an `eslint` task to package.json, and execute it as
+part of the `standards` NPM script as well:
+
+```json
+{
+   "scripts": {
+      "eslint": "eslint .",
+      "standards": "npm run markdownlint && npm run eslint"
+   }
+}
+```
 
 ### Browserlist
 
