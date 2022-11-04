@@ -6,4 +6,7 @@ insert_final_line = true
 indent_style = space
 indent_size = 3
 
+[package.json]
+indent_size = 2
+
 charset = utf-8
