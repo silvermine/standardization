@@ -14,7 +14,8 @@
    "line-length": {
       "strict": true,
       "line_length": 90,
-      "code_block_line_length": 140
+      "code_block_line_length": 140,
+      "tables": false
    },
    "no-duplicate-header": {
       "allow_different_nesting": true
