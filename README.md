@@ -1,9 +1,11 @@
 # Silvermine Standardization Utilities
 
+<!-- markdownlint-disable line-length -->
 [![NPM Version](https://img.shields.io/npm/v/@silvermine/standardization.svg)](https://www.npmjs.com/package/@silvermine/standardization)
 [![License](https://img.shields.io/github/license/silvermine/standardization.svg)](./LICENSE)
 [![Build Status](https://app.travis-ci.com/silvermine/standardization.svg?branch=master)](https://app.travis-ci.com/silvermine/standardization)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+<!-- markdownlint-enable line-length -->
 
 
 ## What?
@@ -51,18 +53,19 @@ Add a command the the `scripts` object of your project's `package.json` file as 
 
 ### EditorConfig
 
-[EditorConfig](https://editorconfig.org/) provides a default set of editor configuration values
-to use in Silvermine projects.
+[EditorConfig](https://editorconfig.org/) provides a default set of editor configuration
+values to use in Silvermine projects.
 
-Symlink the .editorconfig file to the root of your project and use the appropriate extension
-for your editor:
+Symlink the .editorconfig file to the root of your project and use the appropriate
+extension for your editor:
 
 `ln -s ./node_modules/@silvermine/standardization/.editorconfig`
 
 
 ### Commitlint
 
-   * Add a file called commitlint.config.js to your project root with the following content:
+   * Add a file called commitlint.config.js to your project root with the following
+     content:
 
    ```javascript
    'use strict';
@@ -72,7 +75,8 @@ for your editor:
    };
    ```
 
-   * Use git log --oneline to find the short hash of the previous commit and take note of it
+   * Use git log --oneline to find the short hash of the previous commit and take note of
+     it
    * Add the following NPM script to `package.json`:
 
    `"commitlint": "commitlint --from deadbeef"` (where deadbeef is the short hash from the
@@ -109,8 +113,8 @@ NPM script.
 
 ### check-node-version
 
-Add a `check-node-version` task to package.json, providing the desired version of Node.js and
-NPM that you wish to enforce. Execute it as part of the `test` NPM script as well.
+Add a `check-node-version` task to package.json, providing the desired version of Node.js
+and NPM that you wish to enforce. Execute it as part of the `test` NPM script as well.
 
 ```json
 {
@@ -124,13 +128,13 @@ NPM that you wish to enforce. Execute it as part of the `test` NPM script as wel
 
 `check-node-version` allows us to enforce a Node.js and NPM version for our projects. It's
 possible that some processes in some projects could fail when the wrong version of Node.js
-is enabled in the developer's environment. This helps eliminate one factor from the equation
-when troubleshooting.
+is enabled in the developer's environment. This helps eliminate one factor from the
+equation when troubleshooting.
 
 ### Executing ESLint
 
-When ESLint is needed for a project, add an `eslint` task to package.json, and execute it as
-part of the `standards` NPM script as well:
+When ESLint is needed for a project, add an `eslint` task to package.json, and execute it
+as part of the `standards` NPM script as well:
 
 ```json
 {
@@ -306,11 +310,12 @@ ask the question:
 When updating projects, even if they still use `grunt` as the primary build tool,
 we should:
 
-1. Add a new `standards` NPM script which will run all the linting and standards-related scripts
-   * If the project still relies on `grunt standards`, this script should contain a call to
-     `grunt standards`
-2. Replace any calls to `grunt standards` with `npm run standards` in CI configuration files
-   (`.travis.yml`, etc)
+1. Add a new `standards` NPM script which will run all the linting and standards-related
+   scripts
+   * If the project still relies on `grunt standards`, this script should contain a call
+     to `grunt standards`
+2. Replace any calls to `grunt standards` with `npm run standards` in CI configuration
+   files (`.travis.yml`, etc)
 
 Example:
 
