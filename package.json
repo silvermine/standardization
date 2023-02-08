@@ -40,7 +40,7 @@
     "conventional-changelog-conventionalcommits": "4.6.3",
     "conventional-recommended-bump": "6.1.0",
     "git-semver-tags": "4.1.1",
-    "markdownlint-cli": "0.31.1",
+    "markdownlint-cli": "0.33.0",
     "semver": "7.3.5",
     "stylelint": "13.13.1",
     "stylelint-config-standard": "22.0.0",
