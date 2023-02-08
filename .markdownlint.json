@@ -12,6 +12,7 @@
    },
    "no-multiple-blanks": { "maximum": 2 },
    "line-length": {
+      "strict": true,
       "line_length": 90,
       "code_block_line_length": 140
    },
