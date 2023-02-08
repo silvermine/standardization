@@ -11,7 +11,7 @@
     "release:finalize": "node ./scripts/release.js finalize",
     "markdownlint": "markdownlint -c .markdownlint.json -i CHANGELOG.md '{,!(node_modules)/**/}*.md'",
     "eslint": "eslint .",
-    "standards": "npm run markdownlint && npm run eslint"
+    "standards": "npm run commitlint && npm run eslint && npm run markdownlint"
   },
   "repository": {
     "type": "git",
