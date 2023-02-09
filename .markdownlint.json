@@ -29,5 +29,6 @@
    "no-alt-text": false,
    "code-block-style": { "style": "fenced" },
    "code-fence-style": { "style": "backtick" },
-   "no-inline-html": false
+   "no-inline-html": false,
+   "link-fragments": false
 }
