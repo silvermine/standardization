@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [our coding standards][commit-messages] for commit guidelines.
 
+### [2.1.1](https://github.com/silvermine/standardization/compare/v2.1.0...v2.1.1) (2023-02-09)
+
+
+### Bug Fixes
+
+* disable MD051/link-fragments ([322df7d](https://github.com/silvermine/standardization/commit/322df7da87d7ff276b0657287f40655768238c84))
+
+
 ## [2.1.0](https://github.com/silvermine/standardization/compare/v2.0.0...v2.1.0) (2023-02-09)
 
 
