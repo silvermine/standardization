@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [our coding standards][commit-messages] for commit guidelines.
 
+## [2.1.0](https://github.com/silvermine/standardization/compare/v2.0.0...v2.1.0) (2023-02-09)
+
+
+### Features
+
+* drop support for node 12 ([f04dcba](https://github.com/silvermine/standardization/commit/f04dcbac2edbbedae45c98699301d6536d50e4da))
+* upgrade markdownlint-cli to pull in rule improvements ([6e808ae](https://github.com/silvermine/standardization/commit/6e808aecf34634974c41713e7b97a42a35afb63d))
+
+
+### Bug Fixes
+
+* allow markdown tables to exceed the 90 character limit ([b2119fe](https://github.com/silvermine/standardization/commit/b2119fe9a294c6031cec5274f8d9d8842302f768))
+* require words passing the 90 char markdown limit to be wrapped ([4799023](https://github.com/silvermine/standardization/commit/47990230e8e13fb9d3c1423fc4350fc6d5cf6939))
+
+
 ## [2.0.0](https://github.com/silvermine/standardization/compare/v1.3.0...v2.0.0) (2022-04-28)
 
 
