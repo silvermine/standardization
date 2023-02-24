@@ -82,9 +82,17 @@ extension for your editor:
    `"commitlint": "commitlint --from deadbeef"` (where deadbeef is the short hash from the
    previous step)
 
-   * Configure `.gitlab-ci.yml` or `.travis.yml` to run `npm run commitlint`
-     before running `npm test`
+   * Add the new script to package.json, then add a call to commitlint in the `standards`
+     NPM script.
 
+      ```json
+      {
+         "scripts": {
+            "commitlint": "commitlint --from deadbeef",
+            "standards": "npm run commitlint && npm run eslint"
+         }
+      }
+      ```
 
 ### Markdownlint
 
