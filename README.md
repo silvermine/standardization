@@ -132,6 +132,9 @@ For projects which only need limited browser support (internal projects):
 
 #### Configuration
 
+   1. Ensure that the project's `markdownlint` NPM script is configured as described in
+      the [Markdownlint](#markdownlint) section below. Generated changelogs will fail our
+      linting rules and must be excluded from linting.
    1. Ensure that the project's `package.json` file has a
       [`repository.url`][package-json-repo-url] field with the URL to the canonical repo
       for the project in its git hosting solution, e.g.
