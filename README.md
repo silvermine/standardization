@@ -169,7 +169,7 @@ For projects which only need limited browser support (internal projects):
 At a high-level, the process for releasing a new version of a package is:
 
    1. Generate the new changelog entries (See [Prepare the
-      Changelog](#prepare-the-changelog)
+      Changelog](#prepare-the-changelog))
    1. Submit the changelog updates through the standard code review process
    1. Update the version number in `package.json` and create the version tag (See [Perform
       the Version Bump](#perform-the-version-bump))
