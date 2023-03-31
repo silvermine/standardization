@@ -178,6 +178,9 @@ For projects which only need limited browser support (internal projects):
 
 #### Configuration
 
+   1. Ensure that the project's `markdownlint` NPM script is configured as described in
+      the [Markdownlint](#markdownlint) section below. Generated changelogs will fail our
+      linting rules and must be excluded from linting.
    1. Ensure that the project's `package.json` file has a
       [`repository.url`][package-json-repo-url] field with the URL to the canonical repo
       for the project in its git hosting solution, e.g.
@@ -212,7 +215,7 @@ For projects which only need limited browser support (internal projects):
 At a high-level, the process for releasing a new version of a package is:
 
    1. Generate the new changelog entries (See [Prepare the
-      Changelog](#prepare-the-changelog)
+      Changelog](#prepare-the-changelog))
    1. Submit the changelog updates through the standard code review process
    1. Update the version number in `package.json` and create the version tag (See [Perform
       the Version Bump](#perform-the-version-bump))
