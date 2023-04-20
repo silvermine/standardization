@@ -1,12 +1,9 @@
 # Silvermine Standardization Utilities
 
-<!-- markdownlint-disable line-length -->
-[![NPM Version](https://img.shields.io/npm/v/@silvermine/standardization.svg)](https://www.npmjs.com/package/@silvermine/standardization)
-[![License](https://img.shields.io/github/license/silvermine/standardization.svg)](./LICENSE)
-[![Build Status](https://app.travis-ci.com/silvermine/standardization.svg?branch=master)](https://app.travis-ci.com/silvermine/standardization)
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
-<!-- markdownlint-enable line-length -->
-
+[![NPM Version][npm-version]][npm-version-url]
+[![License][license-badge]](./LICENSE)
+[![Build Status][build]][build-url]
+![Conventional Commits][conventional]
 
 ## What?
 
@@ -173,6 +170,46 @@ For projects which only need limited browser support (internal projects):
 ./node_modules/@silvermine/standardization/browserslist/.browserslistrc-narrow-support
 .browserslistrc`
 
+### Badges For README.md In Public Repos
+
+It can be useful to include badges in the main README.md of our public repos, conveying
+visual information quickly for anyone viewing the documentation for a project. When
+including badges, the following are suggested:
+
+   * NPM version
+   * Project License
+   * GitHub Actions build status
+   * Coveralls coverage status (if applicable)
+   * Conventional Commits badge
+
+It can be helpful to use [Markdown reference-style links][markdown-doc-ref-links] to
+build these badges, as they often contain long URLs that can trigger errors from
+our Markdownlint line-length rules.
+
+Example:
+
+```markdown
+# Project Title
+
+<!-- Top of file -->
+[![NPM Version][npm-version]][npm-version-url]
+[![License][license-badge]](./LICENSE)
+[![Build Status][build]][build-url]
+[![Coverage Status][coverage]][coverage-url]
+![Conventional Commits][conventional]
+
+<!-- Bottom of file -->
+[npm-version]: https://img.shields.io/npm/v/@silvermine/project-name.svg
+[npm-version-url]: https://www.npmjs.com/package/@silvermine/project-name
+[license-badge]: https://img.shields.io/github/license/silvermine/project-name.svg
+[build]: https://github.com/silvermine/project-name/actions/workflows/ci.yml/badge.svg
+[build-url]: https://travis-ci.org/silvermine/project-name.svg?branch=master
+[coverage]: https://coveralls.io/repos/github/silvermine/project-name/badge.svg?branch=master
+[coverage-url]: https://coveralls.io/github/silvermine/project-name?branch=master
+[conventional]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg
+```
+
+Be sure to replace `project-name` with the appropriate segment of the project URL.
 
 ### Release Process
 
@@ -182,7 +219,7 @@ For projects which only need limited browser support (internal projects):
       the [Markdownlint](#markdownlint) section below. Generated changelogs will fail our
       linting rules and must be excluded from linting.
    1. Ensure that the project's `package.json` file has a
-      [`repository.url`][package-json-repo-url] field with the URL to the canonical repo
+      [`repository.url`][package-json-link] field with the URL to the canonical repo
       for the project in its git hosting solution, e.g.
       <https://github.com/silvermine/event-emitter.git> for the
       [@silvermine/event-emitter](https://github.com/silvermine/event-emitter) project.
@@ -207,8 +244,6 @@ For projects which only need limited browser support (internal projects):
          }
       }
       ```
-
-[package-json-repo-url]: https://docs.npmjs.com/cli/v8/configuring-npm/package-json#repository
 
 #### Release a New Package Version
 
@@ -343,6 +378,13 @@ Example:
 This software is released under the MIT license. See [the license file](LICENSE) for more
 details.
 
-
+[markdown-doc-ref-links]: https://daringfireball.net/projects/markdown/syntax#link
+[npm-version]: https://img.shields.io/npm/v/@silvermine/standardization.svg
+[npm-version-url]: https://www.npmjs.com/package/@silvermine/standardization
+[license-badge]: https://img.shields.io/github/license/silvermine/standardization.svg
+[build]: https://github.com/silvermine/standardization/actions/workflows/ci.yml/badge.svg
+[build-url]: https://travis-ci.org/silvermine/standardization.svg?branch=master
+[conventional]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg
 [eslintconfig]: https://github.com/silvermine/eslint-config-silvermine
 [eslintplugin]: https://github.com/silvermine/eslint-plugin-silvermine
+[package-json-link]: https://docs.npmjs.com/cli/v8/configuring-npm/package-json#repository
