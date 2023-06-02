@@ -122,13 +122,13 @@ NPM script.
 ### check-node-version
 
 Add a `check-node-version` task to package.json, providing the desired version of Node.js
-and NPM that you wish to enforce. Execute it as part of the `test` NPM script as well.
+and NPM that you wish to enforce. Execute it as part of the `standards` NPM script as well.
 
 ```json
 {
    "scripts": {
       "check-node-version": "check-node-version --node 16.15.0 --npm 8.5.5",
-      "test": "npm run check-node-version && nyc mocha -- -R spec 'tests/**/*.test.js'"
+      "standards": "npm run check-node-version && npm run markdownlint && npm run eslint"
    }
 }
 
