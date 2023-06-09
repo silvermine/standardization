@@ -96,23 +96,43 @@ extension for your editor:
 
 ### Markdownlint
 
-Add a file named `.markdownlint.json` to the root of your project with the
+Add a file named `.markdownlint-cli2.cjs` to the root of your project with the
 following content:
 
-```json
-{
-   "extends": "./node_modules/@silvermine/standardization/.markdownlint.json"
-}
+```js
+'use strict';
+
+const sharedStandards = require(`@silvermine/standardization/.markdownlint-cli2.shared.cjs`);
+
+module.exports = {
+
+   ...sharedStandards,
+
+   // optional
+   globs: [
+      ...sharedStandards.globs,
+      "some/folder/path/or/glob/*.md"
+   ],
+
+   // optional
+   ignores: [
+      ...sharedStandards.ignores,
+      "some/folder/path/or/glob/"
+   ]
+
+};
 ```
 
-Add the following script to package.json, and adjust the ignore argument as needed
-to suit the needs of the project. Then add a call to markdownlint in the `standards`
-NPM script.
+Optionally, you can provide your own `globs` and `ignores` arrays as necessary given
+the directory and file structure of the project.
+
+Add the following script to package.json, then add a call to the new markdownlint
+script to the `standards` NPM script.
 
 ```json
 {
    "scripts": {
-      "markdownlint": "markdownlint -c .markdownlint.json -i CHANGELOG.md '{,!(node_modules)/**/}*.md'",
+      "markdownlint": "markdownlint-cli2",
       "standards": "npm run markdownlint && npm run eslint"
    }
 }

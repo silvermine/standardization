@@ -9,7 +9,7 @@
     "release:preview": "node ./scripts/release.js preview",
     "release:prep-changelog": "node ./scripts/release.js prep-changelog",
     "release:finalize": "node ./scripts/release.js finalize",
-    "markdownlint": "markdownlint -c .markdownlint.json -i CHANGELOG.md '{,!(node_modules,tests/markdownlint)/**/}*.md'",
+    "markdownlint": "markdownlint-cli2",
     "eslint": "eslint .",
     "standards": "npm run commitlint && npm run eslint && npm run markdownlint"
   },
@@ -40,7 +40,7 @@
     "conventional-changelog-conventionalcommits": "4.6.3",
     "conventional-recommended-bump": "6.1.0",
     "git-semver-tags": "4.1.1",
-    "markdownlint-cli": "0.33.0",
+    "markdownlint-cli2": "0.7.1",
     "semver": "7.3.5",
     "stylelint": "13.13.1",
     "stylelint-config-standard": "22.0.0",
