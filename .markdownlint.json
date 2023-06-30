@@ -6,6 +6,9 @@
    "ul-style": {
       "style": "asterisk"
    },
+   "indent-alignment": {
+      "ul_indent": 3
+   },
    "ul-indent": {
       "indent": 3,
       "start_indented": true
