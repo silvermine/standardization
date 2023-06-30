@@ -67,32 +67,32 @@ extension for your editor:
    * Add a file called commitlint.config.js to your project root with the following
      content:
 
-   ```javascript
-   'use strict';
+     ```javascript
+     'use strict';
 
-   module.exports = {
-      extends: [ '@silvermine/standardization/commitlint.js' ],
-   };
-   ```
+     module.exports = {
+        extends: [ '@silvermine/standardization/commitlint.js' ],
+     };
+     ```
 
    * Use git log --oneline to find the short hash of the previous commit and take note of
      it
    * Add the following NPM script to `package.json`:
 
-   `"commitlint": "commitlint --from deadbeef"` (where deadbeef is the short hash from the
-   previous step)
+     `"commitlint": "commitlint --from deadbeef"` (where deadbeef is the short hash from
+     the previous step)
 
    * Add the new script to package.json, then add a call to commitlint in the `standards`
      NPM script.
 
-      ```json
-      {
-         "scripts": {
-            "commitlint": "commitlint --from deadbeef",
-            "standards": "npm run commitlint && npm run eslint"
-         }
-      }
-      ```
+     ```json
+     {
+        "scripts": {
+           "commitlint": "commitlint --from deadbeef",
+           "standards": "npm run commitlint && npm run eslint"
+        }
+     }
+     ```
 
 ### Markdownlint
 
@@ -206,7 +206,7 @@ For projects which only need limited browser support (internal projects):
       <https://github.com/silvermine/event-emitter.git> for the
       [@silvermine/event-emitter](https://github.com/silvermine/event-emitter) project.
       * This is necessary because conventional-changelog needs to know the URL to the git
-         hosting solution so that it can make links to "compare URLs" in the CHANGELOG
+        hosting solution so that it can make links to "compare URLs" in the CHANGELOG
    1. Add the following NPM scripts to the project's `package.json` file:
 
       ```json
@@ -244,12 +244,12 @@ At a high-level, the process for releasing a new version of a package is:
    1. Checkout and update the branch that is to be released
       * For example, if you are working off of `master`:
 
-         ```bash
-         git fetch --all
-         git checkout master
-         git reset origin/master --hard
-         git log -n 5
-         ```
+        ```bash
+        git fetch --all
+        git checkout master
+        git reset origin/master --hard
+        git log -n 5
+        ```
 
    1. Install the NPM dependencies and ensure the tests pass:
 
