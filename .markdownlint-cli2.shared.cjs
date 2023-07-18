@@ -11,8 +11,8 @@ module.exports = {
    globs: [ '**/*.md' ],
 
    ignores: [
-      'node_modules',
-      'CHANGELOG.md',
+      '**/node_modules',
+      '**/CHANGELOG.md',
    ],
 
 };
