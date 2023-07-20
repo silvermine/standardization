@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [our coding standards][commit-messages] for commit guidelines.
 
+## [2.2.0](https://github.com/silvermine/standardization/compare/v2.1.1...v2.2.0) (2023-07-20)
+
+
+### Features
+
+* Add custom rule 'indent-alignment' ([e9644c9](https://github.com/silvermine/standardization/commit/e9644c97d4092cd4f52f390c94ef0bb01de2056b))
+* install markdownlint-cli2 and add configuration ([523fb68](https://github.com/silvermine/standardization/commit/523fb6881bd355a1beeae32d5002a817a29906f1))
+
+
+### Bug Fixes
+
+* markdownlint ignore settings apply to subdirectories ([b419416](https://github.com/silvermine/standardization/commit/b4194164926f9e8c5f1222c3aab2135c2d891a53))
+
+
 ### [2.1.1](https://github.com/silvermine/standardization/compare/v2.1.0...v2.1.1) (2023-02-09)
 
 
