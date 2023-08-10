@@ -11,7 +11,11 @@
     "release:finalize": "node ./scripts/release.js finalize",
     "markdownlint": "markdownlint-cli2",
     "eslint": "eslint .",
-    "standards": "npm run commitlint && npm run eslint && npm run markdownlint"
+    "check-license-compliance": "node scripts/check-license-compliance.js",
+    "standards": "npm run commitlint && npm run check-license-compliance && npm run eslint && npm run markdownlint"
+  },
+  "bin": {
+    "check-license-compliance": "scripts/check-license-compliance.js"
   },
   "repository": {
     "type": "git",
