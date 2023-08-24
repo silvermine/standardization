@@ -21,7 +21,8 @@ const DEFAULT_PERMITTED_LICENSES = [
          projectConfigPath = `${projectDirectoryPath}/.license-checker.js`,
          licenseRecord = {};
 
-   let configuredPermittedLicenses = [],
+   let configuredPermittedLicenses,
+       configuredPermittedPackages,
        moduleInfoReport,
        unsupportedLicenses;
 
@@ -31,10 +32,18 @@ const DEFAULT_PERMITTED_LICENSES = [
       // eslint-disable-next-line global-require
       const config = require(projectConfigPath);
 
-      configuredPermittedLicenses = config.permittedLicenses;
+      configuredPermittedLicenses = config.permittedLicenses || [];
+      configuredPermittedPackages = config.permittedPackages || [];
 
-      console.info(`Using configured allow-list at path ${projectConfigPath}`);
-      console.info('Allowing additional licenses:', configuredPermittedLicenses.join(', '));
+      console.info(`Using configuration file at path ${projectConfigPath}`);
+
+      if (configuredPermittedLicenses.length > 0) {
+         console.info('Allowing additional licenses:', configuredPermittedLicenses.join(', '));
+      }
+
+      if (configuredPermittedPackages.length > 0) {
+         console.info('Ignoring licenses for packages:', configuredPermittedPackages.join(', '));
+      }
    } catch(e) {
       console.error(e);
       console.info('A config for license checker was not provided or was not found.');
@@ -65,7 +74,9 @@ const DEFAULT_PERMITTED_LICENSES = [
    console.info(`This project has ${Object.values(licenseRecord).length} licenses.`);
 
    unsupportedLicenses = Object.values(licenseRecord).filter((record) => {
-      return !DEFAULT_PERMITTED_LICENSES.includes(record.license) && !configuredPermittedLicenses.includes(record.license);
+      return !configuredPermittedPackages.includes(record.module) &&
+             !DEFAULT_PERMITTED_LICENSES.includes(record.license) &&
+             !configuredPermittedLicenses.includes(record.license);
    });
 
    if (unsupportedLicenses.length > 0) {
