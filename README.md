@@ -158,6 +158,44 @@ possible that some processes in some projects could fail when the wrong version 
 is enabled in the developer's environment. This helps eliminate one factor from the
 equation when troubleshooting.
 
+### lockfile-lint
+
+The [`lockfile-lint`](https://github.com/lirantal/lockfile-lint) allows us to enforce
+additional security policies regarding NPM package sources, such as allowed package
+registries, code sources, and package source HTTP protocols.
+
+To configure the tool, add a file named `lockfile-lint.config.js` to your project root,
+with the following contents:
+
+```js
+'use strict';
+
+const sharedConfig = require('@silvermine/standardization/.lockfile-lint.shared.js');
+
+module.exports = {
+
+   ...sharedConfig,
+
+   // Add any overrides here.
+   // See the lockfile-lint docs for more information.
+
+};
+
+```
+
+Then add the following NPM script to your `package.json` file. Call the script as part
+of the tooling chain in the `standards` NPM script:
+
+```json
+{
+   "scripts": {
+      "lockfile-lint": "lockfile-lint",
+      "standards": "npm run lockfile-lint && npm run markdownlint"
+   }
+}
+
+```
+
 ### Executing ESLint
 
 When ESLint is needed for a project, add an `eslint` task to package.json, and execute it
