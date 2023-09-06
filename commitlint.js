@@ -1,6 +1,7 @@
 'use strict';
 
-var VALID_TYPES;
+var VALID_TYPES,
+    VALID_PREFIXES;
 
 VALID_TYPES = [
    'build',
@@ -15,6 +16,11 @@ VALID_TYPES = [
    'revert',
    'style',
    'test',
+];
+
+VALID_PREFIXES = [
+   'Merge',
+   'Revert',
 ];
 
 module.exports = {
@@ -43,4 +49,15 @@ module.exports = {
          VALID_TYPES.concat([ 'sub' ]),
       ],
    },
+   // The default ignores of commitlint allow prefixes like fixup! and squash!,
+   // which we don't allow. Therefore, we're turning off defaultIgnores and
+   // explicitly ignoring only auto-generated merge commit and revert messages
+   defaultIgnores: false,
+   ignores: [
+      (commit) => {
+         return VALID_PREFIXES.some((prefix) => {
+            return commit.startsWith(prefix);
+         });
+      },
+   ],
 };
