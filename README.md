@@ -158,6 +158,42 @@ possible that some processes in some projects could fail when the wrong version 
 is enabled in the developer's environment. This helps eliminate one factor from the
 equation when troubleshooting.
 
+### License Compliance Checker Tool
+
+This project contains a tool to verify that the licenses used by libraries in our
+projects that contain NPM dependencies are among our list of accepted licenses. To
+view the list of accepted licenses, see the `ALLOWED_LICENSES` list in:
+[check-license-compliance.js](scripts/check-license-compliance.js)
+
+To use this tool, `@silvermine/standardization` must be installed in your project:
+
+`npm i -DE @silvermine/standardization`
+
+You should then be able to run the tool in a NPM script:
+
+```json
+{
+   "scripts": {
+      "check-license-compliance": "check-license-compliance"
+   }
+}
+```
+
+The tool also allows you to configure exceptions for license types using a configuration
+file. To configure these exceptions, add a file called `.license-checker.js` to the root
+of your project with the following contents:
+
+```cjs
+'use strict';
+
+module.exports = {
+
+   permittedLicenses: [ 'My-Custom-License' ]
+
+};
+
+```
+
 ### Executing ESLint
 
 When ESLint is needed for a project, add an `eslint` task to package.json, and execute it
