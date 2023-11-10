@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [our coding standards][commit-messages] for commit guidelines.
 
+### [2.2.1](https://github.com/silvermine/standardization/compare/v2.2.0...v2.2.1) (2023-11-10)
+
+
+### Bug Fixes
+
+* disallow fixup! commit messages in our commitlint config ([80a32d1](https://github.com/silvermine/standardization/commit/80a32d1648d7ef279dba2b83b07e7c58c32eaa3c))
+
+
 ## [2.2.0](https://github.com/silvermine/standardization/compare/v2.1.1...v2.2.0) (2023-07-20)
 
 
