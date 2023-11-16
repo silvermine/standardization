@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [our coding standards][commit-messages] for commit guidelines.
 
+### [2.2.2](https://github.com/silvermine/standardization/compare/v2.2.1...v2.2.2) (2023-11-16)
+
+
+### Bug Fixes
+
+* newline setting in editorconfig ([3029239](https://github.com/silvermine/standardization/commit/3029239718ba1918d2f27e3e100f0c5f7759de60)), closes [#72](https://github.com/silvermine/standardization/issues/72)
+
+
 ### [2.2.1](https://github.com/silvermine/standardization/compare/v2.2.0...v2.2.1) (2023-11-10)
 
 
