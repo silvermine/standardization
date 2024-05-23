@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [our coding standards][commit-messages] for commit guidelines.
 
+### [2.2.3](https://github.com/silvermine/standardization/compare/v2.2.2...v2.2.3) (2024-05-23)
+
+
+### Miscellaneous Chores
+
+* upgrade @silvermine/markdownlint-rule-indent-alignment ([a38b6e7](https://github.com/silvermine/standardization/commit/a38b6e74674c39607cfb6fa605269afae8b37a48))
+
+
 ### [2.2.2](https://github.com/silvermine/standardization/compare/v2.2.1...v2.2.2) (2023-11-16)
 
 
