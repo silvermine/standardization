@@ -3,8 +3,8 @@
   "version": "2.2.2",
   "description": "Standardization utilities for Silvermine projects",
   "scripts": {
-    "check-node-version": "check-node-version --npm 8.5.5",
-    "test": "npm run check-node-version && ./bin/run-markdownlint-tests.sh",
+    "check-node-version": "check-node-version --npm 10.5.0",
+    "test": "./bin/run-markdownlint-tests.sh",
     "commitlint": "commitlint --from f59a7f4498aa76e29c33888d01aec18a3d81b343",
     "release:preview": "node ./scripts/release.js preview",
     "release:prep-changelog": "node ./scripts/release.js prep-changelog",
@@ -33,7 +33,7 @@
   "homepage": "https://github.com/silvermine/standardization#readme",
   "dependencies": {
     "@commitlint/cli": "12.1.1",
-    "@silvermine/markdownlint-rule-indent-alignment": "0.1.0",
+    "@silvermine/markdownlint-rule-indent-alignment": "0.1.1",
     "chalk": "4.1.2",
     "check-node-version": "4.0.3",
     "commander": "9.0.0",
