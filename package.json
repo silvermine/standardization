@@ -33,7 +33,7 @@
   "homepage": "https://github.com/silvermine/standardization#readme",
   "dependencies": {
     "@commitlint/cli": "12.1.1",
-    "@silvermine/markdownlint-rule-indent-alignment": "0.1.1",
+    "@silvermine/markdownlint-rule-indent-alignment": "0.2.0",
     "chalk": "4.1.2",
     "check-node-version": "4.0.3",
     "commander": "9.0.0",
