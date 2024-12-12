@@ -13,7 +13,7 @@ TEST_DID_FAIL=0
 pushd "${SCRIPT_DIR}/../tests/markdownlint" > /dev/null
 
 for TEST_FILE in $MARKDOWN_TEST_FILES; do
-   OUTPUT=$("${SCRIPT_DIR}/../node_modules/.bin/markdownlint-cli2-config" "${SCRIPT_DIR}/../tests/markdownlint/.markdownlint-cli2.cjs" "${TEST_FILE}" 2>&1)
+   OUTPUT=$("${SCRIPT_DIR}/../node_modules/.bin/markdownlint-cli2" --config "${SCRIPT_DIR}/../tests/markdownlint/.markdownlint-cli2.cjs" "${TEST_FILE}" 2>&1)
    EXIT_CODE=$?
 
    if [[ "${TEST_FILE}" == *.pass.md ]] && [ "${EXIT_CODE}" -ne 0 ]; then
