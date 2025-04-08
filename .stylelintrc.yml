@@ -49,7 +49,10 @@ rules:
    declaration-colon-space-after: always
    declaration-colon-space-before: never
    declaration-block-trailing-semicolon: always
-   declaration-empty-line-before: never
+   declaration-empty-line-before:
+      - never
+      - ignore:
+         - after-declaration
    comment-whitespace-inside: always
    rule-empty-line-before:
       - always
