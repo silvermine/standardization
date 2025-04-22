@@ -25,7 +25,22 @@ this repo. See [@silvermine/eslint-config][eslintconfig] and
 [@silvermine/eslint-plugin][eslintplugin] for those standards. They are not part of this
 repo because of specific naming requirements for providing ESLint config and plugins.
 
+**NOTE:** Along with the _configuration files_ for the above standards, this repo also
+includes the tools/dependencies needed to enforce those standards, such as
+`markdownlint-cli2`. Just install `@silvermine/standardization` and you will also receive
+`markdownlint-cli2`, `check-node-version`, `stylelint`, etc. (except for ESLint, as noted
+above). This has a few benefits, including:
 
+   * Ensuring our projects are using the same version of these CLI tools to reduce
+     inconsistency and confusion
+   * Reducing the number of dependencies that each project needs to maintain/upgrade
+     individually
+   * Ensuring that the version of each CLI tool our projects use is compatible with the
+     config files in this repo for a given `@silvermine/standardization` version
+
+So, when installing `@silvermine/standardization` in your project, you _should not install
+the CLI tools listed in this project's package.json `dependencies`._ Instead, allow
+`@silvermine/standardization` to provide them.
 
 ## Why?
 
