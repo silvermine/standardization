@@ -1,54 +1,52 @@
 # We are using stylelint-config-standard for all of the base rules designed more broadly
 # for CSS. The stylelint-scss plugin provides us with more SCSS specific rules. Those
 # rules are prefixed by `scss/`
-extends: stylelint-config-standard
+extends:
+   - "stylelint-config-standard"
 plugins:
-   - stylelint-scss
+   - "stylelint-scss"
+   - "@stylistic/stylelint-plugin"
 rules:
    # Turn off the following rule since our ltr/rtl approach generally violates it.
    no-descending-specificity: null
-   # Turn off config-standard rule in favor of the scss/at-rule-no-unknown rule
-   at-rule-no-unknown: null
-   scss/at-rule-no-unknown: true
    # General rules
-   indentation: 3
-   linebreaks: unix
-   no-eol-whitespace: true
-   no-missing-end-of-source-newline: true
-   no-empty-first-line: true
-   max-line-length:
+   '@stylistic/indentation': 3
+   '@stylistic/linebreaks': unix
+   '@stylistic/no-eol-whitespace': true
+   '@stylistic/no-missing-end-of-source-newline': true
+   '@stylistic/no-empty-first-line': true
+   '@stylistic/max-line-length':
       - 140
       - ignorePattern:
          - /https?://[0-9,a-z]*.*/
-   max-empty-lines: 1
-   string-quotes: single
+   '@stylistic/max-empty-lines': 1
+   '@stylistic/string-quotes': single
    string-no-newline: true
-   color-hex-case: lower
+   '@stylistic/color-hex-case': lower
    color-hex-length: long
    color-no-invalid-hex: true
    no-invalid-position-at-import-rule: null
-   number-leading-zero: always
-   number-no-trailing-zeros: true
-   unit-case: lower
+   '@stylistic/number-leading-zero': always
+   '@stylistic/number-no-trailing-zeros': true
+   '@stylistic/unit-case': lower
    unit-no-unknown: true
    property-no-unknown: true
    block-no-empty: true
    value-keyword-case: lower
    length-zero-no-unit: true
-   function-comma-space-after: always-single-line
-   function-comma-space-before: never
-   function-parentheses-space-inside: never-single-line
+   '@stylistic/function-comma-space-after': always-single-line
+   '@stylistic/function-comma-space-before': never
+   '@stylistic/function-parentheses-space-inside': never-single-line
    function-linear-gradient-no-nonstandard-direction: true
-   function-calc-no-invalid: true
    function-calc-no-unspaced-operator: true
    selector-pseudo-class-no-unknown: true
    selector-pseudo-element-no-unknown: true
    selector-type-no-unknown: true
    declaration-block-no-duplicate-properties: true
    declaration-block-no-shorthand-property-overrides: true
-   declaration-colon-space-after: always
-   declaration-colon-space-before: never
-   declaration-block-trailing-semicolon: always
+   '@stylistic/declaration-colon-space-after': always
+   '@stylistic/declaration-colon-space-before': never
+   '@stylistic/declaration-block-trailing-semicolon': always
    declaration-empty-line-before: never
    comment-whitespace-inside: always
    rule-empty-line-before:
@@ -66,19 +64,62 @@ rules:
          - first-nested
          - inside-block
          - blockless-after-same-name-blockless
-   block-opening-brace-space-before: always
-   block-closing-brace-newline-after:
+   '@stylistic/block-opening-brace-space-before': always
+   '@stylistic/block-closing-brace-newline-after':
       - always
       - ignoreAtRules:
          - if
          - else
-   at-rule-name-space-after: always
-   scss/at-else-closing-brace-newline-after: always-last-in-chain
-   scss/at-else-closing-brace-space-after: always-intermediate
-   scss/at-else-empty-line-before: never
-   scss/at-if-closing-brace-newline-after: always-last-in-chain
-   scss/at-if-closing-brace-space-after: always-intermediate
+   '@stylistic/at-rule-name-space-after': always
    # End collection of rules for if/else statements
-   scss/at-extend-no-missing-placeholder: true
-   scss/at-function-parentheses-space-before: never
-   scss/at-mixin-parentheses-space-before: never
+   # Disable newly-added rules that cause linting errors until we can evaluate them
+   color-function-alias-notation: null
+   alpha-value-notation: null
+   shorthand-property-no-redundant-values: null
+   property-no-vendor-prefix: null
+   custom-property-pattern: null
+   selector-class-pattern: null
+   keyframes-name-pattern: null
+   selector-id-pattern: null
+   declaration-block-no-redundant-longhand-properties: null
+   media-feature-range-notation: null
+   selector-not-notation: null
+   color-function-notation: null
+   keyframe-selector-notation: null
+   at-rule-no-vendor-prefix: null
+   keyframe-block-no-duplicate-selectors: null
+   function-url-quotes: null
+   number-max-precision: null
+
+# SCSS files require postcss-scss as customSyntax
+# See: https://github.com/stylelint/stylelint/blob/a57d512dd5f79815a43e996a182b5e2a8154e363/docs/user-guide/configure.md#overrides
+overrides:
+   -
+      files: [ "**/*.scss" ]
+      customSyntax: "postcss-scss"
+      rules:
+         # Turn off config-standard rule in favor of the scss/at-rule-no-unknown rule
+         at-rule-no-unknown: null
+         scss/at-rule-no-unknown: true
+         # Turn off rules enabled in stylelint-config-standard that conflict with SCSS
+         # syntax
+         annotation-no-unknown: null
+         at-rule-descriptor-no-unknown: null
+         at-rule-descriptor-value-no-unknown: null
+         at-rule-prelude-no-invalid: null
+         import-notation: null # We can remove this once all SCSS is using @use
+         declaration-property-value-no-unknown: null
+         media-query-no-invalid: null
+         function-no-unknown: null
+         media-feature-name-value-no-unknown: null
+         # General rules
+         # Collection of rules for if/else statements
+         scss/at-else-closing-brace-newline-after: always-last-in-chain
+         scss/at-else-closing-brace-space-after: always-intermediate
+         scss/at-else-empty-line-before: never
+         scss/at-if-closing-brace-newline-after: always-last-in-chain
+         scss/at-if-closing-brace-space-after: always-intermediate
+         # End collection of rules for if/else statements
+         scss/at-extend-no-missing-placeholder: true
+         scss/at-function-parentheses-space-before: never
+         scss/at-mixin-parentheses-space-before: never
