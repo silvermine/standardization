@@ -25,8 +25,11 @@ for TEST_FILE in $MARKDOWN_TEST_FILES; do
    fi
 done
 
+
+NUM_FILES=$(echo "$MARKDOWN_TEST_FILES" | wc -l | tr -d '[:space:]')
+
 if [ "${TEST_DID_FAIL}" -eq 0 ]; then
-   echo "All markdownlint tests passed."
+   echo "All markdownlint tests passed across $NUM_FILES test file(s)."
 else
    exit 1
 fi
