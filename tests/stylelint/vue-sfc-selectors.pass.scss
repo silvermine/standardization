@@ -1,0 +1,11 @@
+:deep(.foo) {
+   color: red;
+}
+
+:global(.bar) {
+   color: blue;
+}
+
+:slotted(.baz) {
+   color: green;
+}

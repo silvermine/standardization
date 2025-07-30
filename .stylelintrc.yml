@@ -39,7 +39,13 @@ rules:
    '@stylistic/function-parentheses-space-inside': never-single-line
    function-linear-gradient-no-nonstandard-direction: true
    function-calc-no-unspaced-operator: true
-   selector-pseudo-class-no-unknown: true
+   selector-pseudo-class-no-unknown:
+      - true
+      # Allow Vue's `:deep()` and `:global()` selectors
+      - ignorePseudoClasses:
+         - global
+         - deep
+         - slotted
    selector-pseudo-element-no-unknown: true
    selector-type-no-unknown: true
    declaration-block-no-duplicate-properties: true
