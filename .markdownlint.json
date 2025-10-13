@@ -23,8 +23,8 @@
    "no-duplicate-heading": {
       "siblings_only": true
    },
-   "no-trailing-punctuation":{
-      "punctuation":  ".,;:"
+   "no-trailing-punctuation": {
+      "punctuation": ".,;:"
    },
    "hr-style": { "style": "---" },
    "no-emphasis-as-heading": false,
@@ -33,5 +33,8 @@
    "code-block-style": { "style": "fenced" },
    "code-fence-style": { "style": "backtick" },
    "no-inline-html": false,
-   "link-fragments": false
+   "link-fragments": false,
+   "no-multiple-space-blockquote": {
+      "list_items": false
+   }
 }
