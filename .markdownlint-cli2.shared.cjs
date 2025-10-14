@@ -7,6 +7,7 @@ module.exports = {
    customRules: [ indentAlignment ],
 
    config: require('./.markdownlint.json'),
+   gitignore: true,
 
    globs: [ '**/*.md' ],
 
