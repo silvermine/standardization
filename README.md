@@ -312,8 +312,6 @@ At a high-level, the process for releasing a new version of a package is:
    1. Run `npm run release:prep-changelog`. You should now be on a branch named
       `changelog-v${NEW_VERSION}` containing the automatically generated changelog
       additions.
-      * If you receive the message "There were no changelog entries generated" and this is
-        expected, please proceed to [Perform the Version Bump](#perform-the-version-bump).
       * If the changelog needs to be edited, please make the needed adjustments and amend
         your edits to the "chore: update changelog" commit.
       * When preparing the changelog for a final version, the release candidate changelog
