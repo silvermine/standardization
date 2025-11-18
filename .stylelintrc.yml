@@ -129,3 +129,5 @@ overrides:
          scss/at-extend-no-missing-placeholder: true
          scss/at-function-parentheses-space-before: never
          scss/at-mixin-parentheses-space-before: never
+   - files: [ "**/*.vue" ]
+     customSyntax: postcss-html
