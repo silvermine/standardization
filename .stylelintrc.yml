@@ -48,7 +48,11 @@ rules:
          - slotted
    selector-pseudo-element-no-unknown: true
    selector-type-no-unknown: true
-   declaration-block-no-duplicate-properties: true
+   declaration-block-no-duplicate-properties:
+      - true
+      - ignore:
+         # Allow intentional duplicate properties for progressive enhancement (e.g., vh/dvh fallbacks)
+         - consecutive-duplicates-with-different-values
    declaration-block-no-shorthand-property-overrides: true
    '@stylistic/declaration-colon-space-after': always
    '@stylistic/declaration-colon-space-before': never
@@ -97,6 +101,7 @@ rules:
    function-url-quotes: null
    number-max-precision: null
 
+
 # SCSS files require postcss-scss as customSyntax
 # See: https://github.com/stylelint/stylelint/blob/a57d512dd5f79815a43e996a182b5e2a8154e363/docs/user-guide/configure.md#overrides
 overrides:
@@ -131,3 +136,7 @@ overrides:
          scss/at-mixin-parentheses-space-before: never
    - files: [ "**/*.vue" ]
      customSyntax: postcss-html
+     rules:
+        # Turn off config-standard rule in favor of the scss/at-rule-no-unknown rule
+        at-rule-no-unknown: null
+        scss/at-rule-no-unknown: true
