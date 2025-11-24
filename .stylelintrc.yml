@@ -136,4 +136,7 @@ overrides:
          scss/at-mixin-parentheses-space-before: never
    - files: [ "**/*.vue" ]
      customSyntax: postcss-html
-
+     rules:
+        # Turn off config-standard rule in favor of the scss/at-rule-no-unknown rule
+        at-rule-no-unknown: null
+        scss/at-rule-no-unknown: true
