@@ -101,9 +101,10 @@ function createChangelogAdditions(opts) {
 
       changelogStream.on('end', () => {
          // In the event the there are no entries added to the changelog (i.e. it's just a
-         // changelog header), we don't want to add anything to the changelog
+         // changelog header), we add a line acknowledging this release only contains
+         // documentation or internal changes.
          if (content.trim().split('\n').length === 1) {
-            resolve(undefined);
+            content += '_This release only contains documentation or internal changes._\n\n';
          }
 
          resolve(content);
@@ -228,11 +229,7 @@ const main = async (argv) => {
          });
 
          if (!changelogAdditions) {
-            console.warn(chalk.yellow(
-               'There were no changelog entries generated. Aborting changelog preparation.'
-               + ' If this is expected (e.g. only documentation or internal changes were made),'
-               + ' this version can be finalized without an update to the changelog.'
-            ));
+            console.warn(chalk.yellow('There were no changelog entries generated. Aborting changelog preparation.'));
             return;
          }
 
