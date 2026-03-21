@@ -123,6 +123,10 @@ overrides:
          media-query-no-invalid: null
          function-no-unknown: null
          media-feature-name-value-no-unknown: null
+         nesting-selector-no-missing-scoping-root:
+            - true
+            - ignoreAtRules:
+                 - mixin
          # General rules
          # Collection of rules for if/else statements
          scss/at-else-closing-brace-newline-after: always-last-in-chain
