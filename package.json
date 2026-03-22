@@ -1,60 +1,60 @@
 {
-  "name": "@silvermine/standardization",
-  "version": "2.2.3",
-  "description": "Standardization utilities for Silvermine projects",
-  "scripts": {
-    "check-node-version": "check-node-version --npm 11.6.1",
-    "test:markdownlint": "./bin/run-markdownlint-tests.sh",
-    "test:stylelint": "./bin/run-stylelint-tests.sh",
-    "test": "npm run test:markdownlint && npm run test:stylelint",
-    "commitlint": "commitlint --from f59a7f4498aa76e29c33888d01aec18a3d81b343",
-    "release:preview": "node ./scripts/release.js preview",
-    "release:prep-changelog": "node ./scripts/release.js prep-changelog",
-    "release:finalize": "node ./scripts/release.js finalize",
-    "markdownlint": "markdownlint-cli2",
-    "eslint": "eslint .",
-    "standards": "npm run commitlint && npm run eslint && npm run markdownlint"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/silvermine/standardization.git"
-  },
-  "keywords": [
-    "markdownlint",
-    "linting",
-    "markdown lint",
-    "editor config",
-    "sass lint",
-    "release process"
-  ],
-  "author": "Jeremy Thomerson",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/silvermine/standardization/issues"
-  },
-  "homepage": "https://github.com/silvermine/standardization#readme",
-  "dependencies": {
-    "@commitlint/cli": "12.1.1",
-    "@silvermine/markdownlint-rule-indent-alignment": "0.2.0",
-    "@stylistic/stylelint-plugin": "3.1.2",
-    "chalk": "4.1.2",
-    "check-node-version": "4.0.3",
-    "commander": "9.0.0",
-    "conventional-changelog": "3.1.25",
-    "conventional-changelog-conventionalcommits": "4.6.3",
-    "conventional-recommended-bump": "6.1.0",
-    "git-semver-tags": "4.1.1",
-    "markdownlint-cli2": "0.18.1",
-    "postcss-scss": "4.0.9",
-    "semver": "7.3.5",
-    "stylelint": "16.20.0",
-    "stylelint-config-standard": "38.0.0",
-    "stylelint-config-standard-scss": "15.0.1",
-    "stylelint-scss": "6.12.1",
-    "postcss-html": "1.8.0"
-  },
-  "devDependencies": {
-    "@silvermine/eslint-config": "3.0.1",
-    "eslint": "6.8.0"
-  }
+   "name": "@silvermine/standardization",
+   "version": "2.2.3",
+   "description": "Standardization utilities for Silvermine projects",
+   "scripts": {
+      "check-node-version": "check-node-version --npm 11.6.1",
+      "test:markdownlint": "./bin/run-markdownlint-tests.sh",
+      "test:stylelint": "./bin/run-stylelint-tests.sh",
+      "test": "npm run test:markdownlint && npm run test:stylelint",
+      "commitlint": "commitlint --from f59a7f4498aa76e29c33888d01aec18a3d81b343",
+      "release:preview": "node ./scripts/release.js preview",
+      "release:prep-changelog": "node ./scripts/release.js prep-changelog",
+      "release:finalize": "node ./scripts/release.js finalize",
+      "markdownlint": "markdownlint-cli2",
+      "eslint": "eslint .",
+      "standards": "npm run commitlint && npm run eslint && npm run markdownlint"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/silvermine/standardization.git"
+   },
+   "keywords": [
+      "markdownlint",
+      "linting",
+      "markdown lint",
+      "editor config",
+      "sass lint",
+      "release process"
+   ],
+   "author": "Jeremy Thomerson",
+   "license": "MIT",
+   "bugs": {
+      "url": "https://github.com/silvermine/standardization/issues"
+   },
+   "homepage": "https://github.com/silvermine/standardization#readme",
+   "dependencies": {
+      "@commitlint/cli": "12.1.1",
+      "@silvermine/markdownlint-rule-indent-alignment": "0.2.0",
+      "@stylistic/stylelint-plugin": "3.1.2",
+      "chalk": "4.1.2",
+      "check-node-version": "4.0.3",
+      "commander": "9.0.0",
+      "conventional-changelog": "3.1.25",
+      "conventional-changelog-conventionalcommits": "4.6.3",
+      "conventional-recommended-bump": "6.1.0",
+      "git-semver-tags": "4.1.1",
+      "markdownlint-cli2": "0.21.0",
+      "postcss-html": "1.8.0",
+      "postcss-scss": "4.0.9",
+      "semver": "7.3.5",
+      "stylelint": "17.5.0",
+      "stylelint-config-standard": "40.0.0",
+      "stylelint-config-standard-scss": "17.0.0",
+      "stylelint-scss": "7.0.0"
+   },
+   "devDependencies": {
+      "@silvermine/eslint-config": "3.0.1",
+      "eslint": "6.8.0"
+   }
 }
