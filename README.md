@@ -238,19 +238,33 @@ Be sure to replace `project-name` with the appropriate segment of the project UR
       the [Markdownlint](#markdownlint) section below. Generated changelogs will fail our
       linting rules and must be excluded from linting.
    1. Ensure that the project's `package.json` file has a
-      [`repository.url`][package-json-link] field with the URL to the canonical repo
-      for the project in its git hosting solution, e.g.
+      [`repository.url`][package-json-link] field with the URL to the canonical repo for
+      the project in its git hosting solution, e.g.
       <https://github.com/silvermine/event-emitter.git> for the
       [@silvermine/event-emitter](https://github.com/silvermine/event-emitter) project.
       * This is necessary because conventional-changelog needs to know the URL to the git
         hosting solution so that it can make links to "compare URLs" in the CHANGELOG
-   1. Add the following NPM scripts to the project's `package.json` file:
+   1. Run release commands via the bundled bin. After `npm install`, the
+      `silvermine-standardization` executable is on the local `PATH` for npm scripts and
+      via `npx`. The recommended invocation is:
+
+      ```bash
+      npx silvermine-standardization release preview
+      npx silvermine-standardization release prep-changelog
+      npx silvermine-standardization release finalize
+      ```
+
+      Optionally, projects that prefer `npm run` ergonomics can add wrapper scripts to
+      their `package.json`:
 
       ```json
-      "release:preview": "node ./node_modules/@silvermine/standardization/scripts/release.js preview",
-      "release:prep-changelog": "node ./node_modules/@silvermine/standardization/scripts/release.js prep-changelog",
-      "release:finalize": "node ./node_modules/@silvermine/standardization/scripts/release.js finalize"
+      "release:preview": "silvermine-standardization release preview",
+      "release:prep-changelog": "silvermine-standardization release prep-changelog",
+      "release:finalize": "silvermine-standardization release finalize"
       ```
+
+      The legacy `node ./node_modules/@silvermine/standardization/scripts/release.js …`
+      invocation still works but is deprecated and will be removed in a future release.
 
    1. (Optional) If the project is using an issue tracking system other than what the git
       hosting solution provides (e.g. the code is hosted on GitHub but uses Azure DevOps
@@ -293,9 +307,14 @@ At a high-level, the process for releasing a new version of a package is:
       npm run standards && npm test
       ```
 
-   1. Run `npm run release:prep-changelog`. You should now be on a branch named
-      `changelog-v${NEW_VERSION}` containing the automatically generated changelog
+   1. Run `npx silvermine-standardization release prep-changelog`. You should now be on a
+      branch named `changelog-v<version>` containing the automatically generated changelog
       additions.
+      * If your project does not need a separate changelog branch (for example, a small
+        library where committing the changelog directly to the release branch is
+        preferable to opening a changelog PR), pass `--no-branch` (e.g.
+        `npx silvermine-standardization release prep-changelog --no-branch`. The changelog
+        will be committed to the current branch.
       * If you receive the message "There were no changelog entries generated" and this is
         expected, please proceed to [Perform the Version Bump](#perform-the-version-bump).
       * If the changelog needs to be edited, please make the needed adjustments and amend
@@ -311,7 +330,7 @@ At a high-level, the process for releasing a new version of a package is:
    1. Once the changelog has been merged, checkout and update the branch that is to be
       released. The last commit should be the merge commit for the updates to the
       changelog.
-   1. Run `npm run release:finalize`
+   1. Run `npx silvermine-standardization release finalize`
    1. Preview the changes and push the branch and `v${NEW_VERSION}` tag to the correct
       remote repo
    1. If the version should be published and this is not handled by a CI/CD pipeline, run
@@ -319,21 +338,22 @@ At a high-level, the process for releasing a new version of a package is:
 
 ##### Special Cases
 
-In most cases, `npm run release:preview`, `npm run release:prep-changelog`, and `npm run
-release:finalize` will be run without any additional options. However, there are a few
+In most cases, `npx silvermine-standardization release preview`, `npx
+silvermine-standardization release prep-changelog`, and `npx silvermine-standardization
+release finalize` will be run without any additional options. However, there are a few
 cases when you may need to supply extra options.
 
 ###### First Release
 
-When a package is first created, the package.json typically says the version is v0.1.0.
-If that's the version you want to generate the changelog for and publish to NPM, there's a
+When a package is first created, the package.json typically says the version is v0.1.0. If
+that's the version you want to generate the changelog for and publish to NPM, there's a
 problem. The release script will want to bump the package to v0.2.0 or v0.1.1. As such, a
 version of 0.1.0 has to be specified using the `--version` option. For example:
 
 ```bash
-npm run release:preview -- --version 0.1.0
-npm run release:prep-changelog -- --version 0.1.0
-npm run release:finalize -- --version 0.1.0
+npx silvermine-standardization release preview --version 0.1.0
+npx silvermine-standardization release prep-changelog --version 0.1.0
+npx silvermine-standardization release finalize --version 0.1.0
 ```
 
 ###### Releasing v1.0.0
@@ -343,9 +363,9 @@ version. As such, a package's version will stay &lt;v1.0.0 until you tell the re
 script to publish v1.0.0. This can be done using the `--version` option. For example:
 
 ```bash
-npm run release:preview -- --version 1.0.0
-npm run release:prep-changelog -- --version 1.0.0
-npm run release:finalize -- --version 1.0.0
+npx silvermine-standardization release preview --version 1.0.0
+npx silvermine-standardization release prep-changelog --version 1.0.0
+npx silvermine-standardization release finalize --version 1.0.0
 ```
 
 ###### Prerelease Version (e.g. Alpha, Beta, Release Candidate)
@@ -357,10 +377,27 @@ a v1.1.0-rc.0 before creating the final v1.1.0. To do this, you can pass a `--pr
 rc` option (Values like `alpha` and `beta` also work). For example:
 
 ```bash
-npm run release:preview -- --prerelease rc
-npm run release:prep-changelog -- --prerelease rc
-npm run release:finalize -- --prerelease rc
+npx silvermine-standardization release preview --prerelease rc
+npx silvermine-standardization release prep-changelog --prerelease rc
+npx silvermine-standardization release finalize --prerelease rc
 ```
+
+### CLI
+
+This package ships a `silvermine-standardization` executable. Available
+subcommands:
+
+   * `silvermine-standardization release preview` — preview the next version
+     and generated changelog entries without modifying the working tree.
+   * `silvermine-standardization release prep-changelog` — generate the
+     changelog for the next release. By default, creates a `changelog-v<version>`
+     branch and commits the changelog to it. Pass `--no-branch` to commit the
+     changelog directly to the current branch.
+   * `silvermine-standardization release finalize` — bump the version in
+     `package.json` and create the `v<version>` git tag.
+
+Each subcommand accepts `--prerelease <type>` and `--version <version>`. Run
+any subcommand with `--help` for full option detail.
 
 ### Migration to `standards` NPM script
 
