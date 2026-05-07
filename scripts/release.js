@@ -5,6 +5,11 @@ const commander = require('commander'),
       chalk = require('chalk'),
       { createReleaseCommand } = require('./release-command');
 
+console.warn(chalk.yellow(
+   '[deprecated] scripts/release.js will be removed in a future release. '
+   + 'Use `silvermine-standardization release <command>` instead.'
+));
+
 async function main() {
    const program = createReleaseCommand({ cwd: process.cwd() });
 
