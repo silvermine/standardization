@@ -163,6 +163,11 @@ function createReleaseCommand({ cwd }) {
          prereleaseOption = new commander.Option('--prerelease <type>', 'The type of prerelease, e.g. alpha, beta, rc'),
          versionOption = new commander.Option('--version <version>', 'The version to use instead of the auto-calculated version');
 
+   const noBranchOption = new commander.Option(
+      '--no-branch',
+      'Commit the changelog directly to the current branch instead of creating a `changelog-v<version>` branch'
+   );
+
    async function getNextVersion(options) {
       if (options.version) {
          const providedVersion = semver.clean(options.version);
@@ -215,10 +220,13 @@ function createReleaseCommand({ cwd }) {
       .description('Generates the changelog for the next release')
       .addOption(prereleaseOption)
       .addOption(versionOption)
+      .addOption(noBranchOption)
       .action(async (options) => {
          const targetVersion = await getNextVersion(options),
                isFinalVersion = !isPrereleaseVersion(targetVersion),
-               changelogBranch = `changelog-v${targetVersion}`;
+               useNewBranch = options.branch,
+               changelogBranch = `changelog-v${targetVersion}`,
+               pushTarget = useNewBranch ? changelogBranch : await getCurrentBranchName();
 
          console.info(`Generating changelog for ${packageJSON.name}@${targetVersion}...`);
 
@@ -237,7 +245,11 @@ function createReleaseCommand({ cwd }) {
             return;
          }
 
-         await createNewBranch(changelogBranch);
+         if (useNewBranch) {
+            await createNewBranch(changelogBranch);
+         } else {
+            console.info(chalk.yellow(`Committing changelog directly to ${pushTarget}`));
+         }
 
          if (isFinalVersion && semver.diff(currentVersion, targetVersion) === 'prerelease') {
             const lastFinalReleaseTag = await getLastFinalReleaseTag();
@@ -256,11 +268,13 @@ function createReleaseCommand({ cwd }) {
 
          await commitChangelog(targetVersion);
 
+         const mrStep = useNewBranch ? `   ${chalk.gray('3.')} Create a merge request\n` : '';
+
          console.info(
             chalk.whiteBright('The changelog has been updated. Please do the following:\n\n')
             + `   ${chalk.gray('1.')} git show ${chalk.gray('# and review the changes')}\n`
-            + `   ${chalk.gray('2.')} git push $REMOTE_NAME ${changelogBranch}\n`
-            + `   ${chalk.gray('3.')} Create a merge request\n`
+            + `   ${chalk.gray('2.')} git push $REMOTE_NAME ${pushTarget}\n`
+            + mrStep
          );
       });
 
