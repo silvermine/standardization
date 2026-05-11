@@ -1,18 +1,18 @@
+#!/usr/bin/env node
 /* eslint no-console: [ "error", { allow: [ "info", "warn", "error" ] } ] */
 'use strict';
 
 const commander = require('commander'),
       chalk = require('chalk'),
-      { createReleaseCommand } = require('./release-command');
-
-console.warn(chalk.yellow(
-   '[deprecated] scripts/release.js will be removed in a future release. '
-   + 'Use `silvermine-standardization release <command>` instead.'
-));
+      { createReleaseCommand } = require('../scripts/release-command');
 
 async function main() {
-   const program = createReleaseCommand({ cwd: process.cwd() });
+   const program = new commander.Command('silvermine-standardization');
 
+   program.addCommand(createReleaseCommand({ cwd: process.cwd() }));
+   program.action(() => {
+      program.outputHelp();
+   });
    program.exitOverride();
 
    try {

@@ -8,9 +8,9 @@
     "test:stylelint": "./bin/run-stylelint-tests.sh",
     "test": "npm run test:markdownlint && npm run test:stylelint",
     "commitlint": "commitlint --from f59a7f4498aa76e29c33888d01aec18a3d81b343",
-    "release:preview": "node ./scripts/release.js preview",
-    "release:prep-changelog": "node ./scripts/release.js prep-changelog",
-    "release:finalize": "node ./scripts/release.js finalize",
+    "release:preview": "bin/silvermine-standardization.js release preview",
+    "release:prep-changelog": "bin/silvermine-standardization.js release prep-changelog",
+    "release:finalize": "bin/silvermine-standardization.js release finalize",
     "markdownlint": "markdownlint-cli2",
     "eslint": "eslint .",
     "standards": "npm run commitlint && npm run eslint && npm run markdownlint"
@@ -33,6 +33,9 @@
     "url": "https://github.com/silvermine/standardization/issues"
   },
   "homepage": "https://github.com/silvermine/standardization#readme",
+  "bin": {
+    "silvermine-standardization": "./bin/silvermine-standardization.js"
+  },
   "dependencies": {
     "@commitlint/cli": "12.1.1",
     "@silvermine/markdownlint-rule-indent-alignment": "0.2.0",
