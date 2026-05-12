@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [our coding standards][commit-messages] for commit guidelines.
 
+## [3.0.0](https://github.com/silvermine/standardization/compare/v2.2.3...v3.0.0) (2026-05-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* Stylelint deprecated and removed many rules that they
+considered to be 'stylelistic'. Many of those rules are re-implemented in the
+@stylelistic/stylelint package. One rule was not moved there and so is now no
+longer linted: `function-calc-no-invalid`.
+
+See: https://github.com/stylelint/stylelint/issues/5713
+
+### Features
+
+* add --no-branch option to prep-changelog ([f1ef13e](https://github.com/silvermine/standardization/commit/f1ef13e128ca91da77d81626033d8ef6e3df44f3))
+* add scss at no unknown rule to vue files ([2787c28](https://github.com/silvermine/standardization/commit/2787c28364bc55a7579da09c8cc61f315b256c3e))
+* add stylelint duplicate properties rule ([3153d8f](https://github.com/silvermine/standardization/commit/3153d8f5df11844d124809f2588d1b93aae7b9c6))
+* add vue support to stylelint ([200c2d0](https://github.com/silvermine/standardization/commit/200c2d02229b23b346c3ef653c0587e2ae44e16a))
+* expose silvermine-standardization release CLI bin ([d43c379](https://github.com/silvermine/standardization/commit/d43c37995467fecbc90ddd8be687c5916dcb1431))
+* utilize gitignore for markdownlint ([366e224](https://github.com/silvermine/standardization/commit/366e2248511b7581d2337e88fa04808e15878e69))
+
+
+### Bug Fixes
+
+* allow Vue's custom CSS selectors in Stylelint config ([#85](https://github.com/silvermine/standardization/issues/85)) ([57c8bdb](https://github.com/silvermine/standardization/commit/57c8bdbc69adf3bcb3e8514051059d1a3807ae3d))
+* consume new no-multiple-space-blockquote.list_items ([7d6c8cd](https://github.com/silvermine/standardization/commit/7d6c8cd9d2310f57f067f2d385b9377ce97f56c5)), closes [/github.com/DavidAnson/markdownlint/issues/1473#event-17506656561](https://github.com/silvermine//github.com/DavidAnson/markdownlint/issues/1473/issues/event-17506656561)
+* update markdownlint config for duplicate headers ([5a294d5](https://github.com/silvermine/standardization/commit/5a294d5edf4fa1ee35205bef5f902bb44b27a2de))
+
+
+### Miscellaneous Chores
+
+* update stylelint to v16 ([2473318](https://github.com/silvermine/standardization/commit/24733181b35f67e8e0e143387abc05774064982b))
+
+
 ### [2.2.3](https://github.com/silvermine/standardization/compare/v2.2.2...v2.2.3) (2024-05-23)
 
 
