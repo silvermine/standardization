@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [our coding standards][commit-messages] for commit guidelines.
 
+## [2.3.0](https://github.com/silvermine/standardization/compare/v2.2.3...v2.3.0) (2026-05-12)
+
+
+### Features
+
+* add --no-branch option to prep-changelog ([f4bc390](https://github.com/silvermine/standardization/commit/f4bc390495730373e00caa46a5f0ffa58b4ee3da))
+* expose silvermine-standardization release CLI bin ([7ba8e43](https://github.com/silvermine/standardization/commit/7ba8e4350519f06c9151493f2e57df860de2d7a4))
+* utilize gitignore for markdownlint ([3eb7bf9](https://github.com/silvermine/standardization/commit/3eb7bf9a9a9bfad1c3b5e8c654cf829a8c788c1b))
+
+
+### Bug Fixes
+
+* update markdownlint config for duplicate headers ([f0aa50f](https://github.com/silvermine/standardization/commit/f0aa50fd9f2bd858c80e4cc30afca8de9a9129a2))
+
+
 ### [2.2.3](https://github.com/silvermine/standardization/compare/v2.2.2...v2.2.3) (2024-05-23)
 
 
