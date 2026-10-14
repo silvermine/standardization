@@ -73,7 +73,8 @@ module.exports = {
       'unit-no-unknown': true,
       'property-no-unknown': true,
       'block-no-empty': true,
-      'value-keyword-case': 'lower',
+      // Vue's `v-bind()` in CSS takes a JavaScript identifier, so allow camelCase there
+      'value-keyword-case': [ 'lower', { ignoreFunctions: [ 'v-bind' ] } ],
       'length-zero-no-unit': true,
       '@stylistic/function-comma-space-after': 'always-single-line',
       '@stylistic/function-comma-space-before': 'never',
