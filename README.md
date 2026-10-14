@@ -58,11 +58,18 @@ Add a `.stylelintrc.yml` file to the root of your project with the following con
 extends: ./node_modules/@silvermine/standardization/.stylelintrc.yml
 ```
 
-Add a command the the `scripts` object of your project's `package.json` file as follows:
+Add a command to the `scripts` object of your project's `package.json` file as follows:
 
 ```json
 "stylelint": "stylelint './path/to/scss/source/**/*.scss'"
 ```
+
+Do not set `customSyntax` in your project's config. The shared config already selects the
+parser for `.scss` files (`postcss-scss`) and for `.vue` files (`postcss-html`), and it
+resolves them to absolute paths so that linting works no matter where npm places those
+packages in your `node_modules` tree. A bare package name such as `customSyntax:
+postcss-html` in your own config fails with "Cannot resolve custom syntax module" when npm
+nests the parser under `@silvermine/standardization`.
 
 ### EditorConfig
 
