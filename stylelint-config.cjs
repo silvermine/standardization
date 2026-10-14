@@ -9,7 +9,10 @@
 // to stylelint. That happens, for example, when a project upgrades from v2 of this
 // package with an existing package-lock.json.
 
-// Rules that stylelint-config-standard enables for CSS but that conflict with SCSS.
+// Rules that stylelint-config-standard enables for CSS but that conflict with SCSS. They
+// apply to `.scss` files and to the `<style>` blocks of `.vue` files alike. Overrides
+// select rules per file, not per `<style lang>`, so a plain `<style>` block in a `.vue`
+// file also gets these rules. We expect Vue style blocks to use `lang="scss"`.
 const SCSS_RULES = {
    // Turn off config-standard rule in favor of the scss/at-rule-no-unknown rule
    'at-rule-no-unknown': null,
@@ -132,11 +135,7 @@ module.exports = {
       {
          files: [ '**/*.vue' ],
          customSyntax: require.resolve('postcss-html'),
-         rules: {
-            // Turn off config-standard rule in favor of the scss/at-rule-no-unknown rule
-            'at-rule-no-unknown': null,
-            'scss/at-rule-no-unknown': true,
-         },
+         rules: SCSS_RULES,
       },
    ],
 
