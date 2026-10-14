@@ -3,7 +3,7 @@
   "version": "3.0.0",
   "description": "Standardization utilities for Silvermine projects",
   "scripts": {
-    "check-node-version": "check-node-version --npm 11.6.1",
+    "check-node-version": "check-node-version --npm 11.17.0",
     "test:markdownlint": "./bin/run-markdownlint-tests.sh",
     "test:stylelint": "./bin/run-stylelint-tests.sh",
     "test": "npm run test:markdownlint && npm run test:stylelint",
