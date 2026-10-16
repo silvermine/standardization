@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [our coding standards][commit-messages] for commit guidelines.
 
+### [3.0.1](https://github.com/silvermine/standardization/compare/v3.0.0...v3.0.1) (2026-10-16)
+
+
+### Bug Fixes
+
+* allow any case inside v-bind() in Vue style values ([#94](https://github.com/silvermine/standardization/issues/94)) ([09404f4](https://github.com/silvermine/standardization/commit/09404f4d18c9ab3b8e59d21cd397cdff64ac51ac))
+* apply the SCSS rule overrides to Vue style blocks ([#97](https://github.com/silvermine/standardization/issues/97)) ([3222428](https://github.com/silvermine/standardization/commit/3222428951555c8c8bede5941a3855cce25752d8))
+* disable markdownlint descriptive-link-text rule ([d1a525a](https://github.com/silvermine/standardization/commit/d1a525a9ef974a211883f0e6e16fbb7f332ce0ca))
+* resolve stylelint custom syntaxes by absolute path ([9276b45](https://github.com/silvermine/standardization/commit/9276b4503c2c9850dc0e1cc9ee0674fa36b15cff))
+
+
+### Miscellaneous Chores
+
+* upgrade @stylistic/stylelint-plugin to 3.1.3 ([86d5a4e](https://github.com/silvermine/standardization/commit/86d5a4e8e2b54474b68cf5c3146b65f50cf80702))
+
+
 ## [3.0.0](https://github.com/silvermine/standardization/compare/v2.2.3...v3.0.0) (2026-05-12)
 
 
